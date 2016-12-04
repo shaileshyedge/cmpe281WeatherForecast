@@ -133,6 +133,18 @@ exports.checkLogin = function(info)
 };
 
 
+exports.registerUsers = function (info) {
+    console.log("in raw data handler method");
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("users").insert(info);
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};
+
 /*
 exports.getTemperatureData = function()
 {

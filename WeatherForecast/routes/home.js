@@ -2,7 +2,7 @@ var mongoURL = "mongodb://cmpe281:cmpe281@ds157677.mlab.com:57677/cmpe281";
 var mongo = require("./mongo");
 var rawDataHandler = require('../routes/RawdataHandler');
 var express = require('express');
-var router = express.Router();
+//var router = express.Router();
 var Q = require('q');
 var fs = require('fs');
 var ejs = require("ejs");
@@ -72,37 +72,35 @@ function getBillList(req,res) {
 }
 
 function addUser(req, res){
-	var json_responses={};
-	console.log("Inside home addUser");
-	var firstname = req.param("firstname"); 
-	var lastname = req.param("lastname"); 
-	var password = req.param("password");
-	var cpswd = req.param("cpswd");
-	var email = req.param("email");
-	var phone = req.param("phone");
-	var address = req.param("address");
-	var state = req.param("state");
-	var country = req.param("country");
-	var city = req.param("city");
-	var gender = req.param("gender");
+	var data = {
+		firstname : req.param("firstname"),
+		lastname : req.param("lastname"),
+		password : req.param("password"),
+		cpswd : req.param("cpswd"),
+		email : req.param("email"),
+		phone : req.param("phone"),
+		address : req.param("address"),
+		state : req.param("state"),
+		country : req.param("country"),
+		city : req.param("city"),
+		gender : req.param("gender"),
+		isAdmin : '0'
+	};
 
-console.log("firstname: "+firstname);
-console.log("gender: "+gender);
-
-mongo.connect(mongoURL, function() {
-	console.log('connected to mongo at: ' + mongoURL);
-	var coll = mongo.collection('userDetails');
-	
-	coll.insert({firstname : firstname, lastname : lastname, password : password, cpswd : cpswd, email : email, phone : phone, address : address, state : state, country : country, city : city, gender : gender, flag:0}, function(err,user){
-		if (user) {
-			console.log("values successfully inserted");
-			json_responses.statusCode= 200;
-			res.send(json_responses);
-		} 
+	var promise = rawDataHandler.registerUsers(data);
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
 	});
-});
 }
 
+/*
 function userLogin(req,res){
 	var json_responses={};
 	console.log("In home login");
@@ -143,6 +141,7 @@ function userLogin(req,res){
 		});
 	});
 };
+*/
 
 
 function userLogin(req,res)
