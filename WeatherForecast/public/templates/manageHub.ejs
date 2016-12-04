@@ -1,0 +1,93 @@
+<div ng-controller = "manageHubCtrl" ng-init ="getHubDetails();">
+
+	<div class="alert alert-success col-md-12" id="delete-success" style="display: none ">
+	<center> <strong> Successfully deleted the Hub</strong></center>
+	</div>
+	
+	<div class="alert alert-danger col-md-12" id="delete-fail" style="display: none ">
+	<center> <strong> Error while deleting the Hub. Please try again </strong></center>
+	</div>
+
+	<div class="alert alert-success col-md-12" id="activate-success" style="display: none ">
+	<center> <strong> Successfully activated the Hub</strong></center>
+	</div>
+	
+	<div class="alert alert-danger col-md-12" id="activate-fail" style="display: none ">
+	<center> <strong> Error while activating the Hub. Please try again </strong></center>
+	</div>
+	
+	<div class="alert alert-success col-md-12" id="deactivate-success" style="display: none ">
+	<center> <strong> Successfully deactivated the Hub</strong></center>
+	</div>
+	
+	<div class="alert alert-danger col-md-12" id="deactivate-fail" style="display: none ">
+	<center> <strong> Error while deactivating the Hub. Please try again </strong></center>
+	</div>
+	
+<div class="hold-transition skin-blue sidebar-mini">
+  <div>
+  
+  <div class="row">
+  <div class="col-lg-5 col-xs-5">
+	</div>
+	<div class="col-lg-4 col-xs-4">
+  <h1> ALL SENSOR LIST </h1>
+  <br>
+	</div>
+	<div class="col-lg-4 col-xs-4">
+	</div>
+	</div>
+	
+	<div class="row">
+	<div class="col-lg-40 col-xs-40">
+	</div>
+	<div class="col-lg-30 col-xs-30">
+	
+	
+	<table class = "table table-striped hover">
+	<thead>
+	 	<th></th>
+	 	<th></th>
+		<th colspan="1">Location</th>
+	 	<th colspan="1">Hub Name</th>
+	 	<th colspan="1">Status</th>
+	    <th colspan="1">Delete</th>
+	    <th colspan="1">In(Active)</th> 
+	    <th colspan="1"></th>
+	 </thead>
+	 <tbody>
+	<tr ng-repeat="item in hubList">
+
+	<td></td>
+	<td></td>
+	<td>{{item.location}}</td>
+	<td>{{item.hubName}}</td>
+	<td>{{item.status}}</td>
+    <td><input type="button" class="btn btn-danger" value="delete" ng-click="deleteHub(hub)" style="width:100%;"/></td>  
+    <td ng-if="item.status == 'active'"> <input type="button" class="btn btn-warning" value="De-activate" ng-click="deactivateHub(hub)" style="width:100%;"/></td>
+    <td ng-if="item.status == 'inactive'"> <input type="button" class="btn btn-success" value="Activate" ng-click="activateHub(hub)" style="width:100%;"/></td>
+	<td>
+
+	    <table class = "table table-striped hover">
+	    <thead>
+	 	<th colspan="1">Sensor Name</th>
+	 </thead>
+	 <tbody>
+	 <tr ng-repeat="img1 in item.sensor_details" class="info">
+	 	<td>{{img1.sensorName}}</td>
+	 </tr>	
+	 </table>
+
+	</td>
+	</tr>
+	</tbody>
+	</table>
+</div>
+</div>
+</div>
+</div>
+</div>  
+
+
+
+

@@ -1,0 +1,110 @@
+<div ng-controller = "manageSensorHubCtrl" ng-init ="getHubetails();">
+
+	<div class="alert alert-success col-md-12" id="delete-success" style="display: none ">
+	<center> <strong> Successfully deleted the sensor</strong></center>
+	</div>
+	
+	<div class="alert alert-danger col-md-12" id="delete-fail" style="display: none ">
+	<center> <strong> Error while deleting the sensor. Please try again </strong></center>
+	</div>
+
+	<div class="alert alert-success col-md-12" id="activate-success" style="display: none ">
+	<center> <strong> Successfully activated the sensor</strong></center>
+	</div>
+	
+	<div class="alert alert-danger col-md-12" id="activate-fail" style="display: none ">
+	<center> <strong> Error while activating the sensor. Please try again </strong></center>
+	</div>
+	
+	<div class="alert alert-success col-md-12" id="deactivate-success" style="display: none ">
+	<center> <strong> Successfully deactivated the sensor</strong></center>
+	</div>
+	
+	<div class="alert alert-danger col-md-12" id="deactivate-fail" style="display: none ">
+	<center> <strong> Error while deactivating the sensor. Please try again </strong></center>
+	</div>
+	
+<div class="hold-transition skin-blue sidebar-mini">
+  <div>
+  
+  <div class="row">
+  <div class="col-lg-5 col-xs-5">
+	</div>
+	<div class="col-lg-4 col-xs-4">
+  <h1> ALL SENSOR LIST </h1>
+  <br>
+	</div>
+	<div class="col-lg-4 col-xs-4">
+	</div>
+	</div>
+	
+	<div class="row">
+	<div class="col-lg-40 col-xs-40">
+	</div>
+	<div class="col-lg-30 col-xs-30">
+  
+	<table class = "table table-striped hover">
+    <tr>                     
+       <th colspan="1">#</th>
+       <th colspan="1">Sensor Name</th>
+       <th colspan="1">Location</th>
+       <th colspan="1">Status</th>
+       <th colspan="1">Delete</th>
+       <th colspan="1">Activate / Inactivate</th>
+    </tr>
+    <tbody>
+       <tr ng-repeat="sensor in sensorsList">                      
+          <td>{{$index+1}}</td>
+          <td>{{sensor.sensorname}}</td>
+          <td>{{sensor.location}}</td>
+          <td>{{sensor.activate}}</td>
+          <td><input type="button" class="btn btn-danger" value="delete" ng-click="deleteSensor(sensor)" style="width:100%;"/></td>  
+          <td ng-if="sensor.activate == 'active'"> <input type="button" class="btn btn-warning" value="De-activate" ng-click="deactivateSensor(sensor)" style="width:100%;"/></td>
+          <td ng-if="sensor.activate == 'inactive'"> <input type="button" class="btn btn-success" value="Activate" ng-click="activateSensor(sensor)" style="width:100%;"/></td>
+       </tr>                     
+    </tbody>
+ </table>
+</div>
+</div>
+</div>
+</div>
+</div>  
+		
+		
+		
+<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- Sparkline -->
+<script src="plugins/sparkline/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/knob/jquery.knob.js"></script>
+<!-- daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Slimscroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+
+   

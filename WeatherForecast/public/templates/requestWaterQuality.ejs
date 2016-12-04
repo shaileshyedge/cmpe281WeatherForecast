@@ -1,0 +1,83 @@
+<div ng-controller="requestWaterCtrl">
+
+    <section class="content">
+    <h2>Check Water Quality</h2>
+      <div class="row">
+       <br>
+      </div>
+<div class="row">
+	<div class="box">
+            
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+            	<div class="col-md-12 ser-grid">
+            		<h4>Select the Stats you want to view</h4>
+            		
+            		<div class="row">
+    				<div class="col-sm-6">
+    				</div>
+    				 <table class = "table">
+    				    <tr>                     
+    				    	<th></th>
+    				       <th colspan="1">Location</th>
+    				       <th colspan="1">Sensor Name</th>
+    					   <th colspan="1">TO</th>
+    					   <th colspan="1">FROM</th>
+    					   <th colspan="1">SUBMIT</th>
+    				    </tr>
+    				    <tbody>
+    				       <tr >                      
+    				       	  <td></td>
+    				       	  <td>
+    				       	  	<select aria-label="location" name="location" ng-model="location" ng-change="update()">
+    				       	  		<option value="" selected="">Select the Location</option>
+    				       	  		<option value="BigSur">Big Sur</option>
+    				       	  		<option value="HalfMoonBay">Half Moon Bay</option>
+    				       	  		<option value="Hillsborough">Hillsborough</option>
+    				       	  		<option value="Humboldt">Humboldt</option>
+    				       	  		<option value="Oceanside">Oceanside</option>
+    				       	  		<option value="PaloAlto">Palo Alto</option>
+    				       	  		<option value="SanFrancisco">San Francisco</option>
+    				       	  		<option value="SantaBarbara">Santa Barbara</option>	
+    				       	  	</select>
+    				       </td>
+    				       <td>
+    				       		<select novalidate ="" ng-model="sensor1" ng-options="sensor.sensorname as sensor.sensorname for sensor in formDetails">
+    				       			<option value="" selected="">Select Sensor</option>
+    				       		</select>
+    				       </td>
+    				       <td>
+    				       <input type = "date" ng-model="date1">
+    				       </td>
+    				       <td>
+    				       <input type = "date" ng-model="date2">
+    				       </td>
+    				       <td>
+    				       <input type = "submit" ng-click="submit()" class="btn btn-info">
+    				       </td>
+    				       </tr>                     
+    				    </tbody>
+    				 </table>
+    			</div>
+            <div>
+       </div>
+       <div>
+           <highchart id="chart1" config="highchartsNG"></highchart>
+        </div>
+      </div>
+</div>
+
+      </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+</div>
+ </section>
+
+</div>
+							
+										
+          
+
+
+    

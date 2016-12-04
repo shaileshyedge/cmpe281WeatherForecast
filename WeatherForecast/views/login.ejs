@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+	<title>Login</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<link rel="stylesheet" href="assets/css/main.css" />
+	<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			
+			<!--CUSTOM ANGULAR-->
+			<script type="text/javascript" src="angularjs/mainCtrl.js"></script>
+
+</head>
+<body ng-app="sensorApp" ng-controller="mainPageCtrl">
+<div class="alert alert-success col-md-12" id="success-alert1" style="display: none ">
+<center> <strong> Successful Login</strong></center>
+</div>
+
+<div class="alert alert-success col-md-12" id="failure-alert" style="display: none ">
+<center> <strong> Email ID already exists. Please enter a correct Email. </strong></center>
+</div>
+<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1> Water Quality Monitoring</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu" style="background-color: black">
+										<ul>
+											<li><a href="" ng-click="index()">Home</a></li>
+											<li><a href="" ng-click="signup()">Sign up</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+<section class="wrapper style5">
+							<div class="inner">
+									<h4>Login</h4><br>
+									<form>
+										<div class="row uniform">
+											<div class="6u 12u$(xsmall)">
+												<input type="text" name="email" id="email" value="" placeholder="Email"ng-model="email" />
+											</div>
+											</div>
+											<div class="row uniform">
+											<div class="6u 12u$(xsmall)">
+												<input type="password" name="password" id="password" value="" placeholder="Password" ng-model ="password"/>
+											</div>
+											</div>
+											<div class="row uniform">
+											<div class="4u 12u$(small)">
+											<!-- <input type="radio" id="userLogin" name="userLogin" ng-model="login" checked> -->
+											<input type="radio" name="userLogin" id="userLogin" value="userLogin" ng-model="login" checked="true"/>
+												<label for="userLogin">Login As User</label>
+											</div>
+											<div class="4u 12u$(small)">
+												<!-- <input type="radio" id="adminLogin" name="adminLogin" ng-model="login"> -->
+												<!-- <label for="adminLogin">Login As Admin</label> -->
+												<input type="radio" name="adminLogin" id="adminLogin" value="adminLogin" ng-model="login" />
+											<label for="adminLogin">Login As Admin</label>
+											</div><br>
+											<div class="12u$">
+											<input type="submit" value="Login" class="special" ng-click ="userLogin()" /></li>
+											</div>
+									</form>
+								</section>
+								</article>
+								</div>
+								
+</body>
+</html>

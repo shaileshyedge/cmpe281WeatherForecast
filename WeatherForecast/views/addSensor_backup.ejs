@@ -1,0 +1,147 @@
+<html>
+<meta charset="UTF-8">
+<title>Sensor</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" />
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+
+<!-- ANGULAR -->
+<script src="js/controllers/sensorController.js"></script>
+
+</head>
+<body ng-app="sensorApp" ng-controller ="sensorCtrl">
+<div id="page-wrapper">
+
+<!-- HEADING -->
+<!-- Header -->
+<header id="header">
+	<h1>Water Quality Monitoring</h1>
+	<nav id="nav">
+		<ul>
+			<li class="special">
+				<a href="#menu" class="menuToggle"><span>Menu</span></a>
+				<div id="menu" style="background-color: black">
+					<ul>
+						<li><a href="" ng-click="index()">Home</a></li>
+						<li><a href="" ng-click="login();">Login</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</nav>
+</header>		
+
+
+<section class="wrapper style5">
+<div class="inner">
+
+<div class="container">
+<!-- BLANK -->
+<div class="col-md-2">
+</div>
+
+
+<form>
+<div class="row uniform">
+
+	<div class="6u 12u$(xsmall)">
+		<font>Sensor Name</font> 							
+	</div>
+	<div class="6u$ 12u$(xsmall)">
+		<input class="form-control input-sm" type="text" id="sensorName" name="sensorName" placeholder="Sensor Name" ng-model="sensorName" required />												
+	</div>					
+
+
+	<div class="6u 12u$(xsmall)">
+		<font>Description</font> 									
+	</div>
+	<div class="6u$ 12u$(xsmall)">				
+		<input class="form-control input-sm" type="text" id="description" name="description" placeholder="Description" ng-model="description" required />
+	</div>						
+
+
+
+	<div class="6u 12u$(xsmall)">
+		<font>Sensor Type</font> 									
+	</div>
+	<div class="6u$ 12u$(xsmall)">
+		<input class="form-control input-sm" type="text" id="sensorType" name="sensorType" placeholder="Enter type of the sensor" ng-model="sensorType" required />
+	</div>
+
+
+
+	<div class="6u 12u$(xsmall)">
+		<font>Sensor Hub</font> 									
+	</div>
+	<div class="6u$ 12u$(xsmall)">
+		<div class="select-wrapper">
+		<select aria-label="hubType" name="hubType" ng-model="hubType">
+			<option value="" selected="">Select a hub</option>
+			<option value="HubA">Hub A</option>
+			<option value="HubB">Hub B</option>
+			<option value="HubC">Hub C</option>
+			<option value="HubD">Hub D</option>
+		</select>
+		</div>
+	</div>						
+	
+
+
+	<div class="6u 12u$(xsmall)">
+		<font>Sensor Status (On / Off)</font> 									
+	</div>
+	<div class="6u$ 12u$(xsmall)">
+	<div class="checkbox">
+	<label>
+    	<input type="checkbox" checked data-toggle="toggle">
+    </label>
+    </div>
+    </div>
+
+
+
+
+	<div class="6u 12u$(xsmall)">
+		<font>Sensor Location</font> 									
+	</div>
+	<div class="6u$ 12u$(xsmall)">
+	<input class="form-control input-sm" type="text" id="location" name="location" placeholder="Enter the location" ng-model="location" required />
+	</div>						
+
+
+
+<div class="col-md-4">
+</div>
+<div class="col-md-4">
+	<input type="submit" class="special" value="SUBMIT" ng-click="addSensor()"></input>
+</div>
+
+<div class="col-md-4">
+</div>
+</div>
+<hr/>
+</div>
+</form>
+
+</div>
+</section>
+</div>
+</div>
+</body>
