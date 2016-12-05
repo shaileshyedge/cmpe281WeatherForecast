@@ -145,6 +145,20 @@ exports.registerUsers = function (info) {
     return deferred.promise;
 };
 
+
+exports.addNewSensor = function (info) {
+    console.log("in raw data handler method");
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("sensormaster").insert(info);
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};
+
+
 /*
 exports.getTemperatureData = function()
 {
