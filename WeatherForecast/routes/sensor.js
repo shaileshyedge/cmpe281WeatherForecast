@@ -67,7 +67,8 @@ function addNewSensor(req, res){
 		"location"   :  location,
 		"latitude"   : latitude,
 		"longitude"  : longitude,
-		"activate"   :  activate
+		"activate"   :  activate,
+		"deleted"     : "0"
 	};
 
 	var promise = rawDataHandler.addNewSensor(info);
@@ -121,7 +122,7 @@ function getSensorDetails(req,res){
 }
 
 
-function deleteSensor(req,res){
+/*function deleteSensor(req,res){
 	var json_responses={};
 	mongo.connect(mongoURL, function() {
 		console.log("sensor name is : "+req.param("sensorname"));
@@ -140,11 +141,141 @@ function deleteSensor(req,res){
 			}
 		});
 	});
+}*/
+
+
+/*
+function deleteSensor(req,res){
+	var json_responses={};
+	mongo.connect(mongoURL, function() {
+		console.log("sensor name is : "+req.param("sensorname"));
+		console.log("sensor location is : "+req.param("location"));
+		console.log('connected to mongo at: '+ mongoURL);
+		var coll = mongo.collection('sensorMetadata');
+		coll.update({"sensorname":req.param("sensorname") , "location":req.param("location")} , { $set : {"deleted":1}},function(err, user) {
+			if (user) {
+				console.log("Success in deleting the sensor");
+				res.statusCode = 200;
+				res.send(json_responses);
+			} else {
+				res.statusCode = 401;
+				console.log("couldn't delete the sensor.. Sorry");
+				res.send(json_responses);
+			}
+		});
+	});
 }
+*/
+
+/*
+function deactivateSensor(req,res){
+	var json_responses={};
+	mongo.connect(mongoURL, function() {
+		console.log("sensor name is : "+req.param("sensorname"));
+		console.log("sensor location is : "+req.param("location"));
+		console.log('connected to mongo at: '+ mongoURL);
+		var coll = mongo.collection('sensorMetadata');
+		coll.update({"sensorname":req.param("sensorname") , "location":req.param("location")} , { $set : {"activate":"inactive"}},function(err, user) {
+			if (user) {
+				console.log("Success in deleting the sensor");
+				json_responses.statusCode = 200;
+				res.send(json_responses);
+			} else {
+				json_responses.statusCode = 401;
+				console.log("couldn't delete the sensor.. Sorry");
+				res.send(json_responses);
+			}
+		});
+	});
+}*/
+
+
 
 
 function deactivateSensor(req,res){
-	var json_responses={};
+	var sensor_name    = req.param("sensorname");
+	var sensorlocation = req.param("location");
+
+	var info =
+	{
+		"sensor_name"     : sensor_name,
+		"sensor_location" : sensorlocation
+	};
+	var promise = rawDataHandler.deactivateSensor(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"data" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+}
+
+
+
+
+function deleteSensor(req,res){
+	var sensor_name    = req.param("sensorname");
+	var sensorlocation = req.param("location");
+
+	var info =
+	{
+		"sensor_name"     : sensor_name,
+		"sensor_location" : sensorlocation
+	};
+	var promise = rawDataHandler.deleteSensor(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"data" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
+
+
+
+function activateSensor(req,res){
+	var sensor_name    = req.param("sensorname");
+	var sensorlocation = req.param("location");
+
+	var info =
+	{
+		"sensor_name"     : sensor_name,
+		"sensor_location" : sensorlocation
+	};
+	var promise = rawDataHandler.activateSensor(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"data" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
+
+/*
+function activateSensor(req,res){
+	var json_responses = {};
 	mongo.connect(mongoURL, function() {
 		console.log("sensor name is : "+req.param("sensorname"));
 		console.log("sensor location is : "+req.param("location"));
@@ -161,29 +292,9 @@ function deactivateSensor(req,res){
 				res.send(json_responses);
 			}
 		});
-	});	
-}
-
-function activateSensor(req,res){
-	var json_responses = {};
-	mongo.connect(mongoURL, function() {
-		console.log("sensor name is : "+req.param("sensorname"));
-		console.log("sensor location is : "+req.param("location"));
-		console.log('connected to mongo at: '+ mongoURL);
-		var coll = mongo.collection('sensorMetadata');
-		coll.update({"sensorname":req.param("sensorname") , "location":req.param("location")} , { $set : {"activate":"active"}},function(err, user) {
-			if (user) {
-				console.log("Success in deleting the sensor");
-				json_responses.statusCode = 200;
-				res.send(json_responses);
-			} else {
-				json_responses.statusCode = 401;				
-				console.log("couldn't delete the sensor.. Sorry");
-				res.send(json_responses);
-			}
-		});
 	});
 }
+*/
 
 
 exports.activateSensor = activateSensor;

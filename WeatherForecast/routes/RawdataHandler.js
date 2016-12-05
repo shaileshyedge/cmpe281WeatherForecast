@@ -199,6 +199,42 @@ exports.addNewSensor = function (info) {
     return deferred.promise;
 };
 
+exports.deactivateSensor = function (info) {
+    console.log("in raw data handler method");
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("sensormaster").update({"sensorname" : info.sensor_name, "location" : info.sensor_location}, {$set : {"activate" : "inactive"}});
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};
+
+
+exports.activateSensor = function (info) {
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("sensormaster").update({"sensorname" : info.sensor_name, "location" : info.sensor_location}, {$set : {"activate" : "active"}});
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};
+
+
+exports.deleteSensor = function (info) {
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("sensormaster").update({"sensorname" : info.sensor_name, "location" : info.sensor_location}, {$set : {"deleted" : "1"}});
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};
+
 
 /*
 exports.getTemperatureData = function()
