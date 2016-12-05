@@ -112,6 +112,26 @@ exports.adddata = function (info) {
     //return true;
 };
 
+exports.getAllUsers = function()
+{
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("users");
+
+    var usersdata = [];
+    cursor.find({"isAdmin":{$eq : "0"}}).each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+        if (doc != null) {
+            usersdata.push(doc);
+        }
+        else {
+            deferred.resolve(usersdata);
+        }
+    });
+    return deferred.promise;
+};
+
 exports.checkLogin = function(info)
 {
     var deferred = Q.defer();

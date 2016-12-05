@@ -274,7 +274,7 @@ app.controller("userlistCtrl", function($scope, $http, $routeParams) {
 			}).success(function(data) {
 				if(data){
 					console.log("users list is: "+JSON.stringify(data));
-					$scope.userlist = data.allUserlist;
+					$scope.userlist = data.response;
 					console.log("Success in retrieving the sensor metadata");
 					console.log("users list is: "+JSON.stringify($scope.userlist));
 				}
