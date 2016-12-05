@@ -79,26 +79,6 @@ exports.getData = function(req,res){
 };
 
 function getUserlist(req, res){
-	  console.log("inside userlist.js");
-	  var json_responses={};
-		/*mongo.connect(mongoURL, function() {
-			console.log('connected to mongo at: ' + mongoURL);
-			var coll = mongo.collection('userDetails');
-			coll.find({"isAdmin":{$eq :0}}).toArray(function(err, user) {
-				if (user) {
-					console.log("The data retrieved is: "+ JSON.stringify(user));
-					console.log("Success retrieving the data!!");
-					json_responses.statusCode= 200;				
-					json_responses.allUserlist= user;
-					res.send(json_responses);
-				} else {
-					console.log("Error while fetching the data");
-					json_responses.statusCode= 401;
-					res.send(json_responses);
-					
-				}
-			});
-		});*/
 		var promise = rawDataHandler.getAllUsers();
 		promise.done(function (response) {
 		res.send({

@@ -1,6 +1,13 @@
-var mongoURL = "mongodb://localhost:27017/sensor_db";
+var mongoURL = "mongodb://cmpe281:cmpe281@ds157677.mlab.com:57677/cmpe281";
 var mongo = require("./mongo");
-
+var rawDataHandler = require('../routes/RawdataHandler');
+var express = require('express');
+//var router = express.Router();
+var Q = require('q');
+var fs = require('fs');
+var ejs = require("ejs");
+//var weather = require ('openweathermap');
+var http = require('http');
 function addNewSensor(req, res){
 	var json_responses = {};
 	console.log("Inside sensor.js addSensor");
@@ -41,7 +48,7 @@ function getSensorDetails(req,res){
 	var json_responses={};
 	mongo.connect(mongoURL, function() {
 		console.log('connected to mongo at: ' + mongoURL);
-		var coll = mongo.collection('sensorMetadata');
+		/*var coll = mongo.collection('sensorMetadata');
 		coll.find({"deleted":0}).toArray(function(err, user) {
 			
 			if (user) {
@@ -56,6 +63,18 @@ function getSensorDetails(req,res){
 				res.send(json_responses);
 				
 			}
+		});*/
+		var promise = rawDataHandler.getAllSensors();
+		promise.done(function (response) {
+			res.send({
+				"statusCode": 200,
+				"response" : response
+			});
+		}, function (error) {
+			res.send({
+				"statusCode": 500,
+				"error" : error
+			});
 		});
 	});
 }

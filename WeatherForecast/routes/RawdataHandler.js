@@ -132,6 +132,27 @@ exports.getAllUsers = function()
     return deferred.promise;
 };
 
+exports.getAllSensors = function()
+{
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("sensormaster").find();
+
+    var sensorData = [];
+    cursor.each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+        if (doc != null) {
+            sensorData.push(doc);
+        }
+        else
+        {
+            deferred.resolve(sensorData);
+        }
+    });
+    return deferred.promise;
+};
+
 exports.checkLogin = function(info)
 {
     var deferred = Q.defer();

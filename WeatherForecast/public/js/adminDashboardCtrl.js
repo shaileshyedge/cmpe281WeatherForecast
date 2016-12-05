@@ -77,7 +77,7 @@ app.controller("manageSensorCtrl", function($scope, $http, $routeParams) {
 				data: {}
 			}).success(function(data) {
 				if(data){
-					$scope.sensorsList = data.allSensorList;
+					$scope.sensorsList = data.response;
 					console.log("Success in retrieving the sensor metadata");
 					console.log("sensor list is: "+JSON.stringify($scope.sensorsList));
 					
@@ -86,7 +86,8 @@ app.controller("manageSensorCtrl", function($scope, $http, $routeParams) {
 				console.log("error while adding a sensor");
 			});
 		};
-		
+
+
 		$scope.deleteSensor = function(sensor) {
 			console.log("sensor to be deleted is: "+ sensor.sensorname);	
 			console.log("sensor is located in: "+ sensor.location);
