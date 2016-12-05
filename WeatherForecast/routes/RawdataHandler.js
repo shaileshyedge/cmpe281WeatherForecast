@@ -135,7 +135,7 @@ exports.getAllUsers = function()
 exports.getAllSensors = function()
 {
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("sensormaster").find();
+    var cursor = MongoDB.collection("sensormaster").find({"deleted" : "0"});
 
     var sensorData = [];
     cursor.each(function (error, doc) {
