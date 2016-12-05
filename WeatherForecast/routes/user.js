@@ -2,8 +2,16 @@
 /*
  * GET users listing.
  */
-var mongoURL = "mongodb://localhost:27017/sensor_db";
+var mongoURL = "mongodb://cmpe281:cmpe281@ds157677.mlab.com:57677/cmpe281";
 var mongo = require("./mongo");
+var rawDataHandler = require('../routes/RawdataHandler');
+var express = require('express');
+//var router = express.Router();
+var Q = require('q');
+var fs = require('fs');
+var ejs = require("ejs");
+//var weather = require ('openweathermap');
+var http = require('http');
 
 exports.list = function(req, res){
   res.send("respond with a resource");
@@ -73,10 +81,10 @@ exports.getData = function(req,res){
 function getUserlist(req, res){
 	  console.log("inside userlist.js");
 	  var json_responses={};
-		mongo.connect(mongoURL, function() {
+		/*mongo.connect(mongoURL, function() {
 			console.log('connected to mongo at: ' + mongoURL);
 			var coll = mongo.collection('userDetails');
-			coll.find({"flag":{$eq :0}}).toArray(function(err, user) {
+			coll.find({"isAdmin":{$eq :0}}).toArray(function(err, user) {
 				if (user) {
 					console.log("The data retrieved is: "+ JSON.stringify(user));
 					console.log("Success retrieving the data!!");
@@ -90,8 +98,20 @@ function getUserlist(req, res){
 					
 				}
 			});
+		});*/
+		var promise = rawDataHandler.getAllUsers();
+		promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"response" : response
 		});
-	};
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+}
 
 exports.getUserlist = getUserlist;
 
