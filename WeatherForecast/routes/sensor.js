@@ -1,4 +1,4 @@
-var mongoURL = "mongodb://localhost:27017/sensor_db";
+var mongoURL = "mongodb://cmpe281:cmpe281@ds157677.mlab.com:57677/cmpe281";
 var mongo = require("./mongo");
 var rawDataHandler = require('../routes/RawdataHandler');
 var express = require('express');
