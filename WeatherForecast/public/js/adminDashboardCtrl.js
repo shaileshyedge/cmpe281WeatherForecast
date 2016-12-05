@@ -36,11 +36,14 @@ app.controller("addSensorCtrl", function($scope, $http)
 			"description" : $scope.description,
 			"sensorType" : $scope.sensorType,
 			"activate" : $scope.activate,
-			"location" : $scope.location
+			"location" : $scope.location,
+			"longitude" : $scope.longitude,
+			"latitude" : $scope.latitude
     			}
     	}).success(function (res){
+
     		if(res)
-    		{ 
+    		{   alert("Sensor Successfully Added");
     			console.log("successfully added the sensor into the sensor network");
     			if(res.sensorStatus.nModified == 1)
     				{
