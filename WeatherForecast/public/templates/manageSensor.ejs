@@ -51,6 +51,7 @@
        <th colspan="1">Sensor Name</th>
        <th colspan="1">Location</th>
        <th colspan="1">Status</th>
+		<th colspan = "1">Next 5 Days</th>
        <th colspan="1">Delete</th>
        <th colspan="1">Activate / Inactivate</th>
     </tr>
@@ -62,9 +63,10 @@
           <td>{{sensor.sensorname}}</td>
           <td>{{sensor.location}}</td>
           <td>{{sensor.activate}}</td>
-          <td><input type="button" class="btn btn-danger" value="delete" ng-click="deleteSensor(sensor)" style="width:100%;"/></td>  
-          <td ng-if="sensor.activate == 'active'"> <input type="button" class="btn btn-warning" value="De-activate" ng-click="deactivateSensor(sensor)" style="width:100%;"/></td>
-          <td ng-if="sensor.activate == 'inactive'"> <input type="button" class="btn btn-success" value="Activate" ng-click="activateSensor(sensor)" style="width:100%;"/></td>
+		   <td><input type="button" class="btn btn-primary" value = "Next 5 Days" ng-click = "getNextData(sensor.sensorname,sensor.location)" style="width:100%; margin-left: -30px"/></td>
+          <td><input type="button" class="btn btn-danger" value="delete" ng-click="deleteSensor(sensor)" style="width:100%;margin-left: -30px"/></td>
+          <td ng-if="sensor.activate == 'active'"> <input type="button" class="btn btn-warning" value="De-activate" ng-click="deactivateSensor(sensor)" style="width:100%; margin-left: -30px"/></td>
+          <td ng-if="sensor.activate == 'inactive'"> <input type="button" class="btn btn-success" value="Activate" ng-click="activateSensor(sensor)" style="width:100%;  margin-left: -30px"/></td>
        </tr>                     
     </tbody>
  </table>

@@ -115,7 +115,19 @@ app.controller("manageSensorCtrl", function($scope, $http, $routeParams) {
 			});
 		};
 		
-		
+		$scope.getNextData = function(sensorname,location){
+		$http({
+			method : 'POST',
+			url : '/getNextData',
+			data : {
+				"sensorname" : sensorname,
+				"location" : location
+			}
+		}).success(function(data){
+			alert("Hi");
+		});
+		};
+
 		$scope.deactivateSensor = function(sensor) {
 			console.log("sensor to be deactivated is: "+ sensor.sensorname);	
 			console.log("sensor is in the location: "+ sensor.location);

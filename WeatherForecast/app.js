@@ -76,7 +76,7 @@ app.post('/activateHub', hub.activateHub);
 
 app.post('/activateSensor',sensor.activateSensor);
 app.post('/getUserlist',user.getUserlist);
-
+app.post('/getNextData',sensor.getNextData);
 app.post('/getDropDownDetails', home.getData);
 app.post('/getBillList', home.getBillList);
 
