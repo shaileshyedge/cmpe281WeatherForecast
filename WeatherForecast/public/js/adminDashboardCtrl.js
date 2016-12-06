@@ -37,7 +37,7 @@ app.controller("sensorHealthCtrl",function($scope, $http){
 				$scope.highchartsNG = {
 					options : {
 						chart : {
-							type : 'pie',
+							type : 'bar',
 							events : {
 								redraw : function() {
 								}
@@ -70,7 +70,7 @@ app.controller("sensorHealthCtrl",function($scope, $http){
 						title : {
 							text : 'Time'
 						},
-						categories : []
+						categories : ["Temperature","Pressure","Humidity","Sea Level","Wind Speed"]
 					},
 					yAxix : {
 
