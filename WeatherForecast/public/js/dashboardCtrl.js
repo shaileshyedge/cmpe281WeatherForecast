@@ -75,7 +75,6 @@ app.controller("subUnsubCtrl",function($scope,$http){
 			}
 		}).success(function(data){
 			if(data.statusCode == 200){
-				alert("Hi");
 			}
 		}).error(function(error){
 			console.log("error is: "+error);
@@ -88,7 +87,6 @@ app.controller("subUnsubCtrl",function($scope,$http){
 
 app.controller("locateSensorCtrl", function($scope, $http) {
 	console.log("Inside locateSensor Controller");
-	alert("ssssss");
 
 	$scope.generateBill = function(req, res) {
 
@@ -112,7 +110,6 @@ app.controller("locateSensorCtrl", function($scope, $http) {
 
 app.controller("billingCtrl", function($scope, $http, $window) {
 	console.log("Inside billing Controller");
-	alert("Billsss")
 	$scope.billDetails = {};
 	
 	$scope.billData = function(){
@@ -122,7 +119,7 @@ app.controller("billingCtrl", function($scope, $http, $window) {
 			data: {}
 		}).success(function(data){
 			if(data)
-				{   alert(data.totalBill);
+				{
 					console.log("Bill List is :" + JSON.stringify(data));
 					$scope.billDetails = data.response.usersdata;
 					$scope.bill = data.response.totalBill;
@@ -232,7 +229,6 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 			console.log("item changed in second select it: "+ $scope.sensor1);
 			console.log("item changed in Date1: "+ date1);
 			console.log("item changed in Date2: "+ date2);
-		alert("Called");
 
 	$http({
 		method : "POST",
@@ -245,7 +241,6 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 			   }
 	}).success(function(data) {
 		if(data) {
-			alert(data.data);
 			$scope.tuitionjson = data.data;
 			console.log("Output is" + JSON.stringify($scope.tuitionjson));
 			console.log("Success");

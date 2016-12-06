@@ -208,7 +208,6 @@ app.controller("manageSensorCtrl", function($scope, $http, $routeParams) {
 				"location" : location
 			}
 		}).success(function(data){
-			alert("Hi");
 		});
 		};
 
