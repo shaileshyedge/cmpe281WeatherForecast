@@ -55,7 +55,7 @@ app.get('/adminDashboard',home.adminDashboard);
 app.get('/logout', home.logout);
 app.get('/requestData',home.requestData);
 
-app.post('/getData', user.getData);
+app.post('/getSensorData', sensor.getSensorData);
 app.post('/addUser',home.addUser);
 app.post('/userLogin',home.userLogin);
 app.get('/userDashboard',home.userDashboard);
@@ -78,7 +78,7 @@ app.post('/activateSensor',sensor.activateSensor);
 app.post('/getUserlist',user.getUserlist);
 app.post('/getNextData',sensor.getNextData);
 app.post('/getDropDownDetails', home.getData);
-app.post('/getBillList', home.getBillList);
+app.post('/getBillList', sensor.showMyBill);
 
 
 http.createServer(app).listen(app.get('port'), function(){

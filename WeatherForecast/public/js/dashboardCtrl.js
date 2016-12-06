@@ -21,6 +21,7 @@ app.controller("locateSensorCtrl", function($scope, $http) {
 	console.log("Inside locateSensor Controller");
 
 	$scope.generateBill = function(req, res) {
+
 		window.location.assign("/billing");
 	}
 	$scope.locateSensor = function(req, res) {
@@ -35,7 +36,7 @@ app.controller("locateSensorCtrl", function($scope, $http) {
 
 app.controller("billingCtrl", function($scope, $http, $window) {
 	console.log("Inside billing Controller");
-	
+	alert("Billsss")
 	$scope.billDetails = {};
 	
 	$scope.billData = function(){
@@ -45,11 +46,11 @@ app.controller("billingCtrl", function($scope, $http, $window) {
 			data: {}
 		}).success(function(data){
 			if(data)
-				{
+				{   alert(data.totalBill);
 					console.log("Bill List is :" + JSON.stringify(data));
-					$scope.billDetails = data.billDetails;
-					$scope.bill = (data.billDetails.length * 2);
-					console.log("bill amount is: "+$scope.bill);
+					$scope.billDetails = data.response.usersdata;
+					$scope.bill = data.response.totalBill;
+					//console.log("bill amount is : " + $scope.bill);
 					console.log("Success");
 				}
 		}).error(function(err){
@@ -141,13 +142,14 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 			console.log("item changed in second select it: "+ $scope.sensor1);
 			console.log("item changed in Date1: "+ date1);
 			console.log("item changed in Date2: "+ date2);
+		alert("Called");
 
 	$http({
 		method : "POST",
-		url : '/getData',
+		url : '/getSensorData',
 		data : {
-					"location": location,
-					"sensorname":sensorname,
+					"location":    "San Francisco",
+					"sensorname":  "SPC Infotech",
 					"fromDate" : date1,
 					"toDate" : date2
 			   }

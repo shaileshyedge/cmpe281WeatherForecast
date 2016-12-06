@@ -102,18 +102,18 @@ function getSensorDetails(req,res){
 		console.log('connected to mongo at: ' + mongoURL);
 		/*var coll = mongo.collection('sensorMetadata');
 		coll.find({"deleted":0}).toArray(function(err, user) {
-			
+
 			if (user) {
 				console.log("The data retrieved is: "+ JSON.stringify(user));
 				console.log("Success retrieving the data!!");
-				json_responses.statusCode= 200;				
+				json_responses.statusCode= 200;
 				json_responses.allSensorList= user;
 				res.send(json_responses);
 			} else {
 				console.log("Error while fetching the data");
 				json_responses.statusCode= 401;
 				res.send(json_responses);
-				
+
 			}
 		});*/
 		var promise = rawDataHandler.getAllSensors();
@@ -409,9 +409,90 @@ function activateSensor(req,res){
 */
 
 
+
+
+/*function generateBill(req,res){
+
+	var promise = rawDataHandler.generateBill();
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"data" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}*/
+
+
+function showMyBill(req,res){
+//var user = req.session.useremail;
+	var user = "shailesh@gmail.com";
+	console.log("User is " + user);
+	console.log("Here")
+	var promise = rawDataHandler.showBill(user);
+
+	promise.done(function (response) {
+		console.log(response);
+		res.send({
+			"statusCode": 200,
+			"response" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
+
+function getSensorData(req,res){
+	var sensor_name    = req.param("sensorname");
+	var sensorlocation = req.param("location");
+	var datefrom = req.param("fromDate");
+	var dateto  = req.param("toDate")
+    console.log("The sensor name is " + sensor_name);
+	console.log("Thecloatin is " + sensorlocation);
+	var info =
+	{
+		"sensorname"     : sensor_name,
+		"sensorlocation" : sensorlocation,
+		"datefrom" : datefrom,
+		"dateto" : dateto
+	};
+	var promise = rawDataHandler.getSensorData(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"data" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+}
+
+
+
+
+
+
+
 exports.activateSensor = activateSensor;
 exports.deactivateSensor = deactivateSensor;
 exports.deleteSensor = deleteSensor;
 exports.getSensorDetails = getSensorDetails;
 exports.addNewSensor = addNewSensor;
 exports.getNextData = getNextData;
+exports.showMyBill = showMyBill;
+exports.getSensorData = getSensorData;
