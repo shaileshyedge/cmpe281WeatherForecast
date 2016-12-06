@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1c27f48b-bfcd-4ccc-b92f-d99aa2f34b39" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WeatherForecast/app.js" afterPath="$PROJECT_DIR$/WeatherForecast/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js" afterPath="$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WeatherForecast/routes/RawdataHandler.js" afterPath="$PROJECT_DIR$/WeatherForecast/routes/RawdataHandler.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WeatherForecast/routes/sensor.js" afterPath="$PROJECT_DIR$/WeatherForecast/routes/sensor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WeatherForecast/views/billing.ejs" afterPath="$PROJECT_DIR$/WeatherForecast/views/billing.ejs" />
     </list>
     <list id="9688e5cc-b517-4c24-ad2c-256f213fc846" name="Rejected commit: Default" comment="" />
     <ignored path="cmpe281WeatherForecast.iws" />
@@ -39,21 +37,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RawdataHandler.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RawdataHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WeatherForecast/routes/RawdataHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.745399">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="440" column="41" selection-start-line="440" selection-start-column="41" selection-end-line="440" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboardCtrl.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dashboardCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.3095238">
-              <caret line="153" column="27" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="27" />
+            <state vertical-scroll-proportion="1.480337">
+              <caret line="207" column="32" selection-start-line="207" selection-start-column="32" selection-end-line="207" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requestWaterQuality.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WeatherForecast/public/templates/requestWaterQuality.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.461538">
+              <caret line="64" column="54" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -72,8 +80,8 @@
       <file leaf-file-name="sensor.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WeatherForecast/routes/sensor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.444445">
-              <caret line="467" column="25" selection-start-line="467" selection-start-column="25" selection-end-line="467" selection-end-column="25" />
+            <state vertical-scroll-proportion="-11.333333">
+              <caret line="482" column="7" selection-start-line="482" selection-start-column="7" selection-end-line="482" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -95,10 +103,10 @@
         <option value="$PROJECT_DIR$/WeatherForecast/public/templates/manageSensor.ejs" />
         <option value="$PROJECT_DIR$/WeatherForecast/public/js/adminDashboardCtrl.js" />
         <option value="$PROJECT_DIR$/WeatherForecast/views/billing.ejs" />
-        <option value="$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js" />
         <option value="$PROJECT_DIR$/WeatherForecast/app.js" />
         <option value="$PROJECT_DIR$/WeatherForecast/routes/sensor.js" />
         <option value="$PROJECT_DIR$/WeatherForecast/routes/RawdataHandler.js" />
+        <option value="$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js" />
       </list>
     </option>
   </component>
@@ -197,28 +205,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cmpe281WeatherForecast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cmpe281WeatherForecast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WeatherForecast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -373,7 +359,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -659,14 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WeatherForecast/views/billing.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.653846">
-          <caret line="185" column="36" selection-start-line="185" selection-start-column="36" selection-end-line="185" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WeatherForecast/routes/home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -691,34 +669,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WeatherForecast/public/templates/requestWaterQuality.ejs">
+    <entry file="file://$PROJECT_DIR$/WeatherForecast/views/billing.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="36" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="36" />
+        <state vertical-scroll-proportion="-8.653846">
+          <caret line="185" column="36" selection-start-line="185" selection-start-column="36" selection-end-line="185" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js">
+    <entry file="file://$PROJECT_DIR$/WeatherForecast/public/templates/requestWaterQuality.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3095238">
-          <caret line="153" column="27" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="27" />
+        <state vertical-scroll-proportion="-10.461538">
+          <caret line="64" column="54" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WeatherForecast/routes/sensor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.444445">
-          <caret line="467" column="25" selection-start-line="467" selection-start-column="25" selection-end-line="467" selection-end-column="25" />
+        <state vertical-scroll-proportion="-11.333333">
+          <caret line="482" column="7" selection-start-line="482" selection-start-column="7" selection-end-line="482" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WeatherForecast/routes/RawdataHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.745399">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="440" column="41" selection-start-line="440" selection-start-column="41" selection-end-line="440" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.480337">
+          <caret line="207" column="32" selection-start-line="207" selection-start-column="32" selection-end-line="207" selection-end-column="32" />
           <folding />
         </state>
       </provider>

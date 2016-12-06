@@ -398,6 +398,7 @@ exports.getSensorData = function(info)
     var deferred = Q.defer();
     var cursor = MongoDB.collection("sensordata").find({"sensorname" : "SPC Infotech", "location" : "San Francisco"});
     console.log("Reached here2");
+    var json = {};
     var sensorData = [];
     cursor.each(function (error, doc) {
         if (error) {
@@ -414,10 +415,10 @@ exports.getSensorData = function(info)
             console.log("d11 date" + d1);
             console.log("d22 date" + d2);
             console.log("subsr d1" + d1[2].substr(0,2));
-            var a = d1[0];
+            var a = d1[0].substr(1,5);
             var b = d1[1];
             var c = Number(d1[2].substr(0,2));
-            var d = d2[0];
+            var d = d2[0].substr(1,5);
             var e = d2[1];
             var f = Number(d2[2].substr(0,2));
             var from = new Date(Number(a), Number(b)-1,c);  // -1 because months are from 0 to 11
@@ -437,6 +438,7 @@ exports.getSensorData = function(info)
         else
         {
             console.log("Reached here6");
+            json.sensorData = sensorData;
             deferred.resolve(sensorData);
         }
     });

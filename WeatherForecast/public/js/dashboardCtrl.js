@@ -155,7 +155,8 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 			   }
 	}).success(function(data) {
 		if(data) {
-			$scope.tuitionjson = data.schools;
+			alert(data.data);
+			$scope.tuitionjson = data.data;
 			console.log("Output is" + JSON.stringify($scope.tuitionjson));
 			console.log("Success");
 			
@@ -203,21 +204,24 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 					},
 					loading : false
 				}
+			var data2 = [];
 			console.log("Loc1");
 				angular.forEach($scope.tuitionjson, function(item) {
 					console.log("BEFORE ITEM LIST");
 					console.log("Items list " + JSON.stringify(item));
-					$scope.highchartsNG.xAxis.categories.push(item.time);
-				})
+					data2.push([item.date, item.humidity]);
+
+				});
+			$scope.highchartsNG.series[0].data = data2;
 			console.log("Loc2");
 				$scope.xSeriesArray = [];
 				angular.forEach($scope.tuitionjson, function(item) {
 					console.log("Item: " + JSON.stringify(item));
 					$scope.xSeriesArray.push(item[sensorname])
 				})
-				$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
+				//$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
 				$scope.barcolor = '#166D9C';
-				$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
+				//$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
 		}
 	}).error(function(error) {
 		console.log("error :(");

@@ -470,6 +470,7 @@ function getSensorData(req,res){
 	var promise = rawDataHandler.getSensorData(info);
 
 	promise.done(function (response) {
+		console.log(response);
 		res.send({
 			"statusCode": 200,
 			"data" : response
