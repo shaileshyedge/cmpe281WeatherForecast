@@ -75,7 +75,7 @@ app.post('/getHubDetails', hub.getHubDetails);
 app.post('/deleteHub', hub.deleteHub);
 app.post('/deactivateHub', hub.deactivateHub);
 app.post('/activateHub', hub.activateHub);
-
+app.get('/getSensorHealth',sensor.getSensorHealth);
 app.post('/activateSensor',sensor.activateSensor);
 app.post('/getUserlist',user.getUserlist);
 app.post('/getNextData',sensor.getNextData);

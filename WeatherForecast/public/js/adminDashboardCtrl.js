@@ -1,4 +1,4 @@
-var app = angular.module('app', ["ngRoute"]);
+var app = angular.module('app', [ "ngRoute","highcharts-ng" ]);
 
 
 
@@ -16,9 +16,93 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/manageSensorHub', {
 		controller : 'manageHubCtrl',
 		templateUrl : 'templates/manageHub.ejs'
+	}).when('/sensorHealth', {
+		controller : 'sensorHealthCtrl',
+		templateUrl : 'templates/sensorHealth.ejs'
 	})
 } ]);
 
+
+app.controller("sensorHealthCtrl",function($scope, $http){
+
+	$scope.getSensorhealth = function(){
+		$http({
+			method : "GET",
+			url : "/getSensorHealth"
+		}).success(function(data) {
+			if(data) {
+				$scope.tuitionjson = data.data;
+
+				//Highcharts Initiating part
+				$scope.highchartsNG = {
+					options : {
+						chart : {
+							type : 'pie',
+							events : {
+								redraw : function() {
+								}
+
+							}
+						}
+					},
+					series : [ {
+						color : $scope.barcolor,
+						data : []
+					} ],
+					title : {
+						text : "Sensor health"
+					},
+
+					plotOptions: {
+						spline: {
+							turboThreshold: 998,
+							lineWidth: 2,
+							states: {
+								hover: {
+									enabled: true,
+									lineWidth: 3
+								}
+							}
+						}
+					},
+
+					xAxis : {
+						title : {
+							text : 'Time'
+						},
+						categories : []
+					},
+					yAxix : {
+
+					},
+					loading : false
+				}
+				var data2 = [];
+				console.log("Loc1");
+				angular.forEach($scope.tuitionjson, function(item) {
+					console.log("BEFORE ITEM LIST");
+					console.log("Items list " + JSON.stringify(item));
+					data2.push([item.sensortype, item.val]);
+
+				});
+				$scope.highchartsNG.series[0].data = data2;
+				console.log("Loc2");
+				$scope.xSeriesArray = [];
+				angular.forEach($scope.tuitionjson, function(item) {
+					console.log("Item: " + JSON.stringify(item));
+					$scope.xSeriesArray.push(item[sensorType])
+				})
+				//$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
+				$scope.barcolor = '#166D9C';
+				//$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
+			}
+		}).error(function(error) {
+			console.log("error :(");
+		});
+	}
+
+
+});
 app.controller("addSensorCtrl", function($scope, $http)
 {
 	console.log("Inside Add sensor Controller");

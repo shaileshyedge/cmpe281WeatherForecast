@@ -342,6 +342,31 @@ function unSubscribeSensor(req,res){
 
 }
 
+function getSensorHealth(req,res)
+{
+	var sensortype = ["Temperature","Pressure","Humidity","Sea Level", "Wind Speed"];
+	var info = [];
+
+	for (var i = 0; i < 5; i++)
+	{
+		var min = 10;
+		var max = 100;
+		var randomval = Math.floor(Math.random() * (max - min + 1)) + min;
+		var val =
+		{
+			"sensortype" : sensortype[i],
+			"val"        : randomval
+		};
+		info.push(val);
+	}
+
+	res.send({
+		"statusCode": 200,
+		"data" : info
+	});
+}
+
+
 function getDropDownOptions(req,res){
 	var info ={
 		"email" : req.session.useremail
@@ -593,3 +618,4 @@ exports.getDropDownOptions = getDropDownOptions;
 exports.showMyBill = showMyBill;
 exports.getSensorData = getSensorData;
 exports.getLatLong = getLatLong;
+exports.getSensorHealth = getSensorHealth;
