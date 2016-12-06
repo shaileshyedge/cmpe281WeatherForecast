@@ -80,7 +80,6 @@ app.post('/activateSensor',sensor.activateSensor);
 app.post('/getUserlist',user.getUserlist);
 app.post('/getNextData',sensor.getNextData);
 app.post('/getDropDownDetails', home.getData);
-app.post('/getBillList', home.getBillList);
 app.post('/subscribeSensor',sensor.subscribeSensor);
 app.post('/unSubscribeSensor', sensor.unSubscribeSensor);
 app.post('/getBillList', sensor.showMyBill);

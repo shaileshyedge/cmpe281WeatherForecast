@@ -85,7 +85,7 @@ var sensorApp= angular.module('sensorApp',[]);
     		}
     		else
     		{
-    			console.log("Auhentication failure after success");
+    			console.log("Authentication failure after success");
     		}
     		
     		}).error(function (error){
