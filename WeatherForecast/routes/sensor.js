@@ -486,6 +486,25 @@ function getSensorData(req,res){
 
 
 
+function getLatLong(req,res){
+	var promise = rawDataHandler.getLatLong();
+
+	promise.done(function (response) {
+		console.log(response);
+		res.send({
+			"statusCode": 200,
+			"data" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+}
+
+
+
 
 
 
@@ -497,3 +516,4 @@ exports.addNewSensor = addNewSensor;
 exports.getNextData = getNextData;
 exports.showMyBill = showMyBill;
 exports.getSensorData = getSensorData;
+exports.getLatLong = getLatLong;

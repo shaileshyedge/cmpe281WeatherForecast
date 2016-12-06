@@ -19,14 +19,21 @@ app.config([ '$routeProvider', function($routeProvider) {
 
 app.controller("locateSensorCtrl", function($scope, $http) {
 	console.log("Inside locateSensor Controller");
+	alert("ssssss");
 
 	$scope.generateBill = function(req, res) {
 
 		window.location.assign("/billing");
 	}
-	$scope.locateSensor = function(req, res) {
+
+
+
+
+
+
+	/*$scope.locateSensor = function(req, res) {
 		window.location.assign("/map");
-	}
+	}*/
 
 	$scope.requestData = function(req, res) {
 		window.location.assign("/requestData");

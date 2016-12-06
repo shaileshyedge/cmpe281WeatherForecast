@@ -402,19 +402,14 @@ exports.getSensorData = function(info)
     var sensorData = [];
     cursor.each(function (error, doc) {
         if (error) {
-            console.log("Reached here3");
             deferred.reject(error);
         }
-        console.log("Reached here4");
+
         if (doc != null) {
-            console.log("Reached here5");
+
             var db_date = doc.date.toString().split("-");
-            console.log("DB DATE" + db_date);
             var d1 = info.datefrom.toLocaleString().split("-");
             var d2 = info.dateto.toLocaleString().split("-");
-            console.log("d11 date" + d1);
-            console.log("d22 date" + d2);
-            console.log("subsr d1" + d1[2].substr(0,2));
             var a = d1[0].substr(1,5);
             var b = d1[1];
             var c = Number(d1[2].substr(0,2));
@@ -425,19 +420,13 @@ exports.getSensorData = function(info)
             var to   = new Date(Number(d), Number(e)-1,f);
             //var db_date = new Date(d[0],d1[1] - 1,d1[2]);
             var check = new Date(Number(db_date[0]), Number(db_date[1])-1, Number(db_date[2]));
-            console.log("DB DATE" + check);
-            console.log("d1 date" + from);
-            console.log("d2 date" + to);
             console.log("Reached here7");
             if (check >= from && check <= to) {
-                console.log("Reached here8");
                 sensorData.push(doc);
             }
-            console.log("Reached here9");
         }
         else
         {
-            console.log("Reached here6");
             json.sensorData = sensorData;
             deferred.resolve(sensorData);
         }
@@ -445,6 +434,40 @@ exports.getSensorData = function(info)
     return deferred.promise;
 };
 
+
+
+
+
+
+
+
+
+
+
+exports.getLatLong = function(info)
+{   console.log("Reached here");
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("sensordata").find({});
+
+    var json = [];
+    var sensorData = [];
+    cursor.each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+
+        if (doc != null) {
+                sensorData.push(doc.latitude,doc.longitude);
+            json.push(sensorData);
+
+        }
+        else
+        {
+            deferred.resolve(json);
+        }
+    });
+    return deferred.promise;
+};
 
 
 /*

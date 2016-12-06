@@ -66,6 +66,7 @@ app.post('/resetBill', home.resetBill);
 
 app.post('/addNewSensor',sensor.addNewSensor);
 app.post('/getSensorDetails',sensor.getSensorDetails);
+app.post('/getLatLong',sensor.getLatLong)
 app.post('/deleteSensor',sensor.deleteSensor);
 app.post('/deactivateSensor',sensor.deactivateSensor);
 
