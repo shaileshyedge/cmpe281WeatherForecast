@@ -31,9 +31,9 @@ app.controller("locateSensorCtrl", function($scope, $http) {
 
 
 
-	/*$scope.locateSensor = function(req, res) {
+	$scope.locateSensor = function(req, res) {
 		window.location.assign("/map");
-	}*/
+	}
 
 	$scope.requestData = function(req, res) {
 		window.location.assign("/requestData");
