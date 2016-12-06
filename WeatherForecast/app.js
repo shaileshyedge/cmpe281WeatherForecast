@@ -61,6 +61,7 @@ app.post('/userLogin',home.userLogin);
 app.get('/userDashboard',home.userDashboard);
 app.get('/billing',home.billing);
 app.get('/map',home.map);
+app.get('/getDropDownOptions',sensor.getDropDownOptions);
 
 app.post('/resetBill', home.resetBill);
 
@@ -79,7 +80,8 @@ app.post('/getUserlist',user.getUserlist);
 app.post('/getNextData',sensor.getNextData);
 app.post('/getDropDownDetails', home.getData);
 app.post('/getBillList', home.getBillList);
-
+app.post('/subscribeSensor',sensor.subscribeSensor);
+app.post('/unSubscribeSensor', sensor.unSubscribeSensor);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));

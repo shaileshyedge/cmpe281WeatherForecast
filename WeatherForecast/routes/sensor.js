@@ -289,6 +289,79 @@ function activateSensor(req,res){
 
 }
 
+function subscribeSensor(req,res)
+{
+	var sensor_name    = req.param("sensorname");
+	var sensorlocation = req.param("location");
+	var date = new Date();
+
+	var info =
+	{
+		"sensor_name"     : sensor_name,
+		"sensor_location" : sensorlocation,
+		"email" : req.session.useremail,
+		"date" : date,
+		"activate" : "active"
+	};
+	var promise = rawDataHandler.subscribeSensor(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"response" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
+function unSubscribeSensor(req,res){
+
+	var info =
+	{
+		"sensor_name" : req.param("sensorname"),
+		"email" : req.session.useremail
+	};
+	var promise = rawDataHandler.unSubscribeSensor(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"response" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
+function getDropDownOptions(req,res){
+	var info ={
+		"email" : req.session.useremail
+	};
+	var promise = rawDataHandler.getDropDownOptions(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"response" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
 function getNextData(req,res)
 {
 	var sensorname = req.param("sensorname");
@@ -415,3 +488,6 @@ exports.deleteSensor = deleteSensor;
 exports.getSensorDetails = getSensorDetails;
 exports.addNewSensor = addNewSensor;
 exports.getNextData = getNextData;
+exports.subscribeSensor = subscribeSensor;
+exports.unSubscribeSensor = unSubscribeSensor;
+exports.getDropDownOptions = getDropDownOptions;

@@ -241,6 +241,50 @@ exports.activateSensor = function (info) {
     return deferred.promise;
 };
 
+exports.getDropDownOptions = function(info){
+    var deferred = Q.defer();
+    var found = [];
+    var cursor = MongoDB.collection("subscription").find({"email" : info.email});
+    console.log(cursor.size);
+    cursor.each(function (error, user){
+        if (error) {
+            deferred.reject(error);
+        }
+        if (user != null) {
+            found.push(user);
+        }
+        else {
+            deferred.resolve(found);
+        }
+    });
+    return deferred.promise;
+}
+
+exports.subscribeSensor = function (info) {
+    var deferred = Q.defer();
+    console.log(info.sensor_location);
+    console.log(info.sensor_name);
+    var cursor = MongoDB.collection("subscription").insert({"sensorname" : info.sensor_name, "location" : info.sensor_location,"email" : info.email,"date" : info.date, "activate" : info.activate, "cost" : "10"});
+    cursor.then(function (doc) {
+        deferred.resolve(doc);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+
+};
+
+exports.unSubscribeSensor = function (info) {
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("subscription").remove({"email" : info.email, "sensorname" : info.sensor_name});
+    cursor.then(function (doc) {
+        deferred.resolve(doc);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+
+};
 
 exports.deleteSensor = function (info) {
     var deferred = Q.defer();

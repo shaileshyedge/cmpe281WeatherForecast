@@ -13,9 +13,78 @@ app.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/requestWater', {
 		controller : 'requestWaterCtrl',
 		templateUrl : 'templates/requestWaterQuality.ejs'
-	})
+	}).when('/subUnsub', {
+		controller : 'subUnsubCtrl',
+		templateUrl : 'templates/subUnsub.ejs'
+	});
 } ]);
 
+
+app.controller("subUnsubCtrl",function($scope,$http){
+
+	$scope.getSubUnsubSensors = function(){
+		$http({
+			method : 'POST',
+			url : '/getSensorDetails',
+			data: {}
+		}).success(function(data) {
+			if(data){
+				$scope.sensorsList = data.response;
+				console.log("Success in retrieving the sensor metadata");
+				console.log("sensor list is: "+JSON.stringify($scope.sensorsList));
+			}
+		}).error(function (data){
+			console.log("error while adding a sensor");
+		});
+	};
+
+	$scope.subscribeSensor = function(sensor){
+		console.log("sensor to be subscribed is: "+ sensor.sensorname);
+		console.log("sensor is located in: "+ sensor.location);
+		$http({
+			method : 'POST',
+			url : '/subscribeSensor',
+			data : {
+				"sensorname" : sensor.sensorname,
+				"location" : sensor.location
+			}
+		}).success(function(data){
+			if(data.statusCode == 200){
+				$scope.sensor = data.response.ops["0"];
+				$("#activate-success").show();
+				$("#activate-success").fadeTo(2000, 1000).slideUp(1000, function(){
+				});
+			}
+		}).error(function(error){
+			console.log("error is: "+error);
+			$("#activate-fail").show();
+			$("#activate-fail").fadeTo(2000, 1000).slideUp(1000, function(){
+			});
+		});
+	};
+
+	$scope.UnSubscribeSensor = function(sensor){
+		console.log("sensor to be subscribed is: "+ sensor.sensorname);
+		console.log("sensor is located in: "+ sensor.location);
+		$http({
+			method : 'POST',
+			url : '/unSubscribeSensor',
+			data : {
+				"sensorname" : sensor.sensorname,
+				"location" : sensor.location
+			}
+		}).success(function(data){
+			if(data.statusCode == 200){
+				alert("Hi");
+			}
+		}).error(function(error){
+			console.log("error is: "+error);
+			$("#activate-fail").show();
+			$("#activate-fail").fadeTo(2000, 1000).slideUp(1000, function(){
+			});
+		});
+	};
+});
 
 app.controller("locateSensorCtrl", function($scope, $http) {
 	console.log("Inside locateSensor Controller");
@@ -106,6 +175,20 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 	}
 	$scope.locateSensor = function(req, res) {
 		window.location.assign("/map");
+	}
+
+	$scope.getDropDownOptions = function(req,res){
+		$http({
+			method: 'GET',
+			url: '/getDropDownOptions'
+		}).success(function(data){
+			if(data)
+			{
+				$scope.response = data.response;
+			}
+		}).error(function(err){
+			console.log(err);
+		});
 	}
 	
 	console.log("Inside Request Water Controller");
