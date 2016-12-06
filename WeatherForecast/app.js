@@ -55,7 +55,7 @@ app.get('/adminDashboard',home.adminDashboard);
 app.get('/logout', home.logout);
 app.get('/requestData',home.requestData);
 
-app.post('/getData', user.getData);
+app.post('/getSensorData', sensor.getSensorData);
 app.post('/addUser',home.addUser);
 app.post('/userLogin',home.userLogin);
 app.get('/userDashboard',home.userDashboard);
@@ -67,6 +67,7 @@ app.post('/resetBill', home.resetBill);
 
 app.post('/addNewSensor',sensor.addNewSensor);
 app.post('/getSensorDetails',sensor.getSensorDetails);
+app.post('/getLatLong',sensor.getLatLong)
 app.post('/deleteSensor',sensor.deleteSensor);
 app.post('/deactivateSensor',sensor.deactivateSensor);
 
@@ -82,6 +83,8 @@ app.post('/getDropDownDetails', home.getData);
 app.post('/getBillList', home.getBillList);
 app.post('/subscribeSensor',sensor.subscribeSensor);
 app.post('/unSubscribeSensor', sensor.unSubscribeSensor);
+app.post('/getBillList', sensor.showMyBill);
+
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));

@@ -88,10 +88,18 @@ app.controller("subUnsubCtrl",function($scope,$http){
 
 app.controller("locateSensorCtrl", function($scope, $http) {
 	console.log("Inside locateSensor Controller");
+	alert("ssssss");
 
 	$scope.generateBill = function(req, res) {
+
 		window.location.assign("/billing");
 	}
+
+
+
+
+
+
 	$scope.locateSensor = function(req, res) {
 		window.location.assign("/map");
 	}
@@ -104,7 +112,7 @@ app.controller("locateSensorCtrl", function($scope, $http) {
 
 app.controller("billingCtrl", function($scope, $http, $window) {
 	console.log("Inside billing Controller");
-	
+	alert("Billsss")
 	$scope.billDetails = {};
 	
 	$scope.billData = function(){
@@ -114,11 +122,11 @@ app.controller("billingCtrl", function($scope, $http, $window) {
 			data: {}
 		}).success(function(data){
 			if(data)
-				{
+				{   alert(data.totalBill);
 					console.log("Bill List is :" + JSON.stringify(data));
-					$scope.billDetails = data.billDetails;
-					$scope.bill = (data.billDetails.length * 2);
-					console.log("bill amount is: "+$scope.bill);
+					$scope.billDetails = data.response.usersdata;
+					$scope.bill = data.response.totalBill;
+					//console.log("bill amount is : " + $scope.bill);
 					console.log("Success");
 				}
 		}).error(function(err){
@@ -224,19 +232,21 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 			console.log("item changed in second select it: "+ $scope.sensor1);
 			console.log("item changed in Date1: "+ date1);
 			console.log("item changed in Date2: "+ date2);
+		alert("Called");
 
 	$http({
 		method : "POST",
-		url : '/getData',
+		url : '/getSensorData',
 		data : {
-					"location": location,
-					"sensorname":sensorname,
+					"location":    "San Francisco",
+					"sensorname":  "SPC Infotech",
 					"fromDate" : date1,
 					"toDate" : date2
 			   }
 	}).success(function(data) {
 		if(data) {
-			$scope.tuitionjson = data.schools;
+			alert(data.data);
+			$scope.tuitionjson = data.data;
 			console.log("Output is" + JSON.stringify($scope.tuitionjson));
 			console.log("Success");
 			
@@ -284,21 +294,24 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 					},
 					loading : false
 				}
+			var data2 = [];
 			console.log("Loc1");
 				angular.forEach($scope.tuitionjson, function(item) {
 					console.log("BEFORE ITEM LIST");
 					console.log("Items list " + JSON.stringify(item));
-					$scope.highchartsNG.xAxis.categories.push(item.time);
-				})
+					data2.push([item.date, item.humidity]);
+
+				});
+			$scope.highchartsNG.series[0].data = data2;
 			console.log("Loc2");
 				$scope.xSeriesArray = [];
 				angular.forEach($scope.tuitionjson, function(item) {
 					console.log("Item: " + JSON.stringify(item));
 					$scope.xSeriesArray.push(item[sensorname])
 				})
-				$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
+				//$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
 				$scope.barcolor = '#166D9C';
-				$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
+				//$scope.highchartsNG.series[0].data = $scope.xSeriesArray;
 		}
 	}).error(function(error) {
 		console.log("error :(");

@@ -150,6 +150,42 @@ exports.getAllUsers = function()
     return deferred.promise;
 };
 
+
+exports.showBill = function(email)
+{
+    var totalBill = 0;
+
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("subscription");
+    var json = {};
+
+    var usersdata = [];
+    cursor.find({"email" : email}).each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+        if (doc != null)
+        {
+
+            var d1 = new Date(doc.date);
+            var d2 = new Date();
+            var diff = parseInt((d2-d1)/(1000*3600*24)) + 1;
+            console.log("Date is zzzz" + diff);
+            doc.cost = Number(diff) * Number(doc.cost);
+            totalBill = Number(totalBill) + Number(doc.cost);
+            //doc.push(totalBill);
+            usersdata.push(doc);
+        }
+        else {
+            json.usersdata = usersdata;
+            json.totalBill = totalBill;
+            deferred.resolve(json);
+        }
+    });
+    return deferred.promise;
+};
+
+
 exports.getAllSensors = function()
 {
     var deferred = Q.defer();
@@ -401,6 +437,82 @@ function printError(error) {
 
 
 
+exports.getSensorData = function(info)
+{   console.log("Reached here");
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("sensordata").find({"sensorname" : "SPC Infotech", "location" : "San Francisco"});
+    console.log("Reached here2");
+    var json = {};
+    var sensorData = [];
+    cursor.each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+
+        if (doc != null) {
+
+            var db_date = doc.date.toString().split("-");
+            var d1 = info.datefrom.toLocaleString().split("-");
+            var d2 = info.dateto.toLocaleString().split("-");
+            var a = d1[0].substr(1,5);
+            var b = d1[1];
+            var c = Number(d1[2].substr(0,2));
+            var d = d2[0].substr(1,5);
+            var e = d2[1];
+            var f = Number(d2[2].substr(0,2));
+            var from = new Date(Number(a), Number(b)-1,c);  // -1 because months are from 0 to 11
+            var to   = new Date(Number(d), Number(e)-1,f);
+            //var db_date = new Date(d[0],d1[1] - 1,d1[2]);
+            var check = new Date(Number(db_date[0]), Number(db_date[1])-1, Number(db_date[2]));
+            console.log("Reached here7");
+            if (check >= from && check <= to) {
+                sensorData.push(doc);
+            }
+        }
+        else
+        {
+            json.sensorData = sensorData;
+            deferred.resolve(sensorData);
+        }
+    });
+    return deferred.promise;
+};
+
+
+
+
+
+
+
+
+
+
+
+exports.getLatLong = function(info)
+{   console.log("Reached here");
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("sensordata").find({});
+
+    var json = [];
+    var sensorData = [];
+    cursor.each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+
+        if (doc != null) {
+                sensorData.push(doc.latitude,doc.longitude);
+            json.push(sensorData);
+
+        }
+        else
+        {
+            deferred.resolve(json);
+        }
+    });
+    return deferred.promise;
+};
+
 
 /*
 exports.getTemperatureData = function()
@@ -441,6 +553,76 @@ exports.getMyBill = function(info)
     return deferred.promise;
 };
 */
+
+
+
+/*exports.generateBill = function()
+{
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("users");
+
+    var usersdata = [];
+    cursor.find({}).each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+        if (doc != null) {
+            var promise = calculateBill(doc);
+            promise.done(function (response) {
+             var promise = insertBill(response,doc.email);
+            }, function (error) {
+                console.log("error");
+                            });
+
+
+        }
+        else {
+            deferred.resolve(usersdata);
+        }
+    });
+    return deferred.promise;
+};
+
+function calculateBill(data)
+{   var totalBill = 0;
+
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("subscription");
+
+    var usersdata = [];
+    cursor.find({"email" : data.email}).each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+        if (doc != null) {
+            totalBill = totalBill + doc.cost;
+        }
+        else {
+            deferred.resolve(totalBill);
+        }
+    });
+    return deferred.promise;
+}
+
+
+
+function  insertBill (data,email) {
+    var info =
+    {
+        "email" : email,
+        "cost"  : data
+    };
+
+    console.log("in raw data handler method");
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("bills").insert(info);
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};*/
 
 
 
