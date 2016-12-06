@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c27f48b-bfcd-4ccc-b92f-d99aa2f34b39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js" afterPath="$PROJECT_DIR$/WeatherForecast/public/js/dashboardCtrl.js" />
-    </list>
+    <list default="true" id="1c27f48b-bfcd-4ccc-b92f-d99aa2f34b39" name="Default" comment="" />
     <list id="9688e5cc-b517-4c24-ad2c-256f213fc846" name="Rejected commit: Default" comment="" />
     <ignored path="cmpe281WeatherForecast.iws" />
     <ignored path=".idea/workspace.xml" />
