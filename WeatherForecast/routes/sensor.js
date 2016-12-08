@@ -538,8 +538,7 @@ function activateSensor(req,res){
 
 
 function showMyBill(req,res){
-//var user = req.session.useremail;
-	var user = "shailesh@gmail.com";
+   var user = req.session.useremail;
 	console.log("User is " + user);
 	console.log("Here")
 	var promise = rawDataHandler.showBill(user);
@@ -574,9 +573,18 @@ function getSensorData(req,res){
 		"datefrom" : datefrom,
 		"dateto" : dateto
 	};
-	var promise = rawDataHandler.getSensorData(info);
 
-	promise.done(function (response) {
+	var bill  =
+	{
+		"email" : req.session.useremail,
+		"sensorname"     : sensor_name,
+		"sensorlocation" : sensorlocation,
+		"cost"  : "5"
+	}
+	var promise = rawDataHandler.getSensorData(info);
+	var promise2 = rawDataHandler.updateBill(bill);
+
+	promise.all(promise,promise2).done(function (response) {
 		console.log(response);
 		res.send({
 			"statusCode": 200,

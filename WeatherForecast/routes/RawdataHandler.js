@@ -170,7 +170,7 @@ exports.showBill = function(email)
     var totalBill = 0;
 
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("subscription");
+    var cursor = MongoDB.collection("bill");
     var json = {};
 
     var usersdata = [];
@@ -185,7 +185,7 @@ exports.showBill = function(email)
             var d2 = new Date();
             var diff = parseInt((d2-d1)/(1000*3600*24)) + 1;
             console.log("Date is zzzz" + diff);
-            doc.cost = Number(diff) * Number(doc.cost);
+            //doc.cost = doc.cost + Number(doc.cost);
             totalBill = Number(totalBill) + Number(doc.cost);
             //doc.push(totalBill);
             usersdata.push(doc);
@@ -271,6 +271,19 @@ exports.deactivateSensor = function (info) {
     console.log("in raw data handler method");
     var deferred = Q.defer();
     var cursor = MongoDB.collection("sensormaster").update({"sensorname" : info.sensor_name, "location" : info.sensor_location}, {$set : {"activate" : "inactive"}});
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};
+
+exports.updateBill = function (info) {
+    console.log("in update Bill");
+    console.log(info);
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("bill").update({"email" : info.email,"sensorname" : info.sensorname,"sensor_location":info.sensorlocation }, {$inc : {"cost": 5 }});
     cursor.then(function (user) {
         deferred.resolve(user);
     }).catch(function (error) {
@@ -454,7 +467,7 @@ function printError(error) {
 exports.getSensorData = function(info)
 {   console.log("Reached here");
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("sensordata").find({"sensorname" : "SPC Infotech", "location" : "San Francisco"});
+    var cursor = MongoDB.collection("sensordata").find({"sensorname" : info.sensorname, "location" : info.sensorlocation});
     console.log("Reached here2");
     var json = {};
     var sensorData = [];

@@ -229,13 +229,15 @@ app.controller("requestWaterCtrl", function($scope, $http) {
 			console.log("item changed in second select it: "+ $scope.sensor1);
 			console.log("item changed in Date1: "+ date1);
 			console.log("item changed in Date2: "+ date2);
+		alert(location.location);
+		alert(sensorname.sensorname);
 
 	$http({
 		method : "POST",
 		url : '/getSensorData',
 		data : {
-					"location":    "San Francisco",
-					"sensorname":  "SPC Infotech",
+					"location":    location.location,
+					"sensorname":  sensorname.sensorname,
 					"fromDate" : date1,
 					"toDate" : date2
 			   }
