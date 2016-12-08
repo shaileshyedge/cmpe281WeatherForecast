@@ -113,6 +113,20 @@ exports.adddata = function (info) {
 };
 
 
+exports.insertBill = function (info) {
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("bill").insert(info);
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+    //return true;
+};
+
+
+
 exports.addSensorData = function(info) {
     var deferred = Q.defer();
     var cursor = MongoDB.collection("sensordata").insert(info);

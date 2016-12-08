@@ -303,9 +303,18 @@ function subscribeSensor(req,res)
 		"date" : date,
 		"activate" : "active"
 	};
-	var promise = rawDataHandler.subscribeSensor(info);
 
-	promise.done(function (response) {
+	var bill =
+	{
+		"sensorname" : sensor_name,
+		"sensor_location" : sensorlocation,
+		"email" : req.session.useremail,
+		"cost"  : 10
+	}
+	var promise = rawDataHandler.subscribeSensor(info);
+	var promise2 = rawDataHandler.insertBill(bill);
+
+	Q.all([promise,promise2]).done(function (response) {
 		res.send({
 			"statusCode": 200,
 			"response" : response
