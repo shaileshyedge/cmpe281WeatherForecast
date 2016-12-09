@@ -55,6 +55,10 @@ app.controller("subUnsubCtrl",function($scope,$http){
 				$("#activate-success").fadeTo(2000, 1000).slideUp(1000, function(){
 				});
 			}
+			else
+			{
+				alert("Already Subscribed For this Sensor");
+			}
 		}).error(function(error){
 			console.log("error is: "+error);
 			$("#activate-fail").show();
