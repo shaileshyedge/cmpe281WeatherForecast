@@ -7,7 +7,6 @@ var express = require('express')
     , user = require('./routes/user')
     ,home = require('./routes/home')
     ,sensor= require('./routes/sensor')
-    ,hub = require('./routes/hub')
     , http = require('http')
     , path = require('path');
 var MongoDB = require("./routes/MongoDBHandler");
@@ -70,10 +69,7 @@ app.post('/getLatLong',sensor.getLatLong)
 app.post('/deleteSensor',sensor.deleteSensor);
 app.post('/deactivateSensor',sensor.deactivateSensor);
 
-app.post('/getHubDetails', hub.getHubDetails);
-app.post('/deleteHub', hub.deleteHub);
-app.post('/deactivateHub', hub.deactivateHub);
-app.post('/activateHub', hub.activateHub);
+
 app.get('/getSensorHealth',sensor.getSensorHealth);
 app.post('/activateSensor',sensor.activateSensor);
 app.post('/getUserlist',user.getUserlist);
