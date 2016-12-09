@@ -62,7 +62,7 @@ app.get('/billing',home.billing);
 app.get('/map',home.map);
 app.get('/getDropDownOptions',sensor.getDropDownOptions);
 
-app.post('/resetBill', home.resetBill);
+app.post('/payBill', home.payBill);
 
 app.post('/addNewSensor',sensor.addNewSensor);
 app.post('/getSensorDetails',sensor.getSensorDetails);

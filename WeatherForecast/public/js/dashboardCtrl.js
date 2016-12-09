@@ -132,9 +132,10 @@ app.controller("billingCtrl", function($scope, $http, $window) {
 	}
 	
 	$scope.paymentInvoice = function(){
+		alert("From Here alert");
 		$http({
 			method: 'POST',
-			url: '/resetBill',
+			url: '/payBill',
 			data: {}
 		}).success(function(data){
 			if(data)

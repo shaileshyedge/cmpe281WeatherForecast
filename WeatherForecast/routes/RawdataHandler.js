@@ -297,7 +297,7 @@ exports.payBill = function (info) {
     console.log("in Pay Bill");
     console.log(info);
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("bill").update({"email" : info.email,"sensorname" : info.sensorname,"sensor_location":info.sensorlocation }, {$inc : {"cost": -5 }});
+    var cursor = MongoDB.collection("bill").update({"email" : info.email}, {$set : {"cost": 0 }},{multi:true});
     cursor.then(function (user) {
         deferred.resolve(user);
     }).catch(function (error) {
@@ -307,18 +307,6 @@ exports.payBill = function (info) {
 };
 
 
-exports.updateCredits = function (info) {
-    console.log("in Pay Bill");
-    console.log(info);
-    var deferred = Q.defer();
-    var cursor = MongoDB.collection("users").update({"email" : info.email}, {$inc : {"credits": -5 }});
-    cursor.then(function (user) {
-        deferred.resolve(user);
-    }).catch(function (error) {
-        deferred.reject(error);
-    });
-    return deferred.promise;
-};
 
 exports.activateSensor = function (info) {
     var deferred = Q.defer();

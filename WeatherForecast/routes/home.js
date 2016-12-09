@@ -159,9 +159,32 @@ function getData(req,res){
 	});
 };
 
-function resetBill(req,res) {
+
+function payBill(req,res)
+{
+	var info =
+	{
+		"email" : req.session.useremail
+	};
+	var promise = rawDataHandler.payBill(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"response" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+};
+
+function pay1Bill(req,res) {
 	
-	console.log("Inside reset bill module");
+	console.log("Paying My Bill");
 	var json_responses={};
 	mongo.connect(mongoURL, function() {
 		console.log("email is : "+req.session.email);
@@ -185,7 +208,7 @@ function resetBill(req,res) {
 
 
 
-exports.resetBill = resetBill;
+exports.payBill	= payBill;
 exports.getData = getData;
 exports.requestData = requestData;
 exports.logout = logout;
