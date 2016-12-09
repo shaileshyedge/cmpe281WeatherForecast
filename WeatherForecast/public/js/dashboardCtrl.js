@@ -1,13 +1,5 @@
 var app = angular.module('app', [ "ngRoute", "highcharts-ng" ]);
 
-/*
- * app.config([ '$routeProvider', function($routeProvider) {
- * $routeProvider.when('/requestWater', { controller : 'requestWaterCtrl',
- * templateUrl : 'templates/requestWaterQuality.ejs' }).when('/billing', {
- * controller : 'billingCtrl', templateUrl : '/templates/billing.ejs'
- * }).when('/yearly', { controller : 'yearlyctrl', templateUrl :
- * '/templates/yearlyanalysis.ejs' }) } ]);
- */
 
 app.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/requestWater', {
