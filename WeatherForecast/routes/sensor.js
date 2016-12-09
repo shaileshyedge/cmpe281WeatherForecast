@@ -54,16 +54,21 @@ function addNewSensor(req, res){
 	var sensorName =  req.param("sensorName");
 	var description = req.param("description");
 	var sensorType =  req.param("sensorType");
+	var subscriptionCost = req.param("subscriptionCost");
+	var costPerReq = req.param("costPerReq");
 	var activate =    req.param("activate");
 	var location =    req.param("location");
 	var latitude =    req.param("latitude");
 	var longitude =   req.param("longitude");
+
 
 	var info =
 	{
 		"sensorname" : sensorName,
 		"description": description,
 		"sensortype" :  sensorType,
+		"subscriptionCost" : subscriptionCost,
+		"costPerReq" :costPerReq,
 		"location"   :  location,
 		"latitude"   : latitude,
 		"longitude"  : longitude,
@@ -309,6 +314,7 @@ function subscribeSensor(req,res)
 		"sensorname" : sensor_name,
 		"sensor_location" : sensorlocation,
 		"email" : req.session.useremail,
+		"count" : 1,
 		"cost"  : 10
 	}
 	var promise = rawDataHandler.subscribeSensor(info);
@@ -418,6 +424,29 @@ function getDropDownOptions(req,res){
 		"email" : req.session.useremail
 	};
 	var promise = rawDataHandler.getDropDownOptions(info);
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"response" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
+
+
+
+function showAllBills(req,res){
+	var info ={
+		"email" : req.session.useremail
+	};
+	var promise = rawDataHandler.showAllBills(info);
 
 	promise.done(function (response) {
 		res.send({

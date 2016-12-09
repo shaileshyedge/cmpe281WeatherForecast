@@ -119,6 +119,8 @@ app.controller("addSensorCtrl", function($scope, $http)
 			"sensorName" : $scope.sensorName,
 			"description" : $scope.description,
 			"sensorType" : $scope.sensorType,
+			"subscriptionCost" : $scope.subscriptionCost,
+			"costPerReq" : $scope.costPerReq,
 			"activate" : $scope.activate,
 			"location" : $scope.location,
 			"longitude" : $scope.longitude,

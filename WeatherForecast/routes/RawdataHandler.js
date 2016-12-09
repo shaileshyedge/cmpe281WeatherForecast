@@ -221,6 +221,28 @@ exports.getAllSensors = function()
     return deferred.promise;
 };
 
+
+exports.showAllBills = function()
+{
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("bill").find({});
+
+    var sensorData = [];
+    cursor.each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+        if (doc != null) {
+            sensorData.push(doc);
+        }
+        else
+        {
+            deferred.resolve(sensorData);
+        }
+    });
+    return deferred.promise;
+};
+
 exports.checkLogin = function(info)
 {
     var deferred = Q.defer();
@@ -283,7 +305,7 @@ exports.updateBill = function (info) {
     console.log("in update Bill");
     console.log(info);
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("bill").update({"email" : info.email,"sensorname" : info.sensorname,"sensor_location":info.sensorlocation }, {$inc : {"cost": 5 }});
+    var cursor = MongoDB.collection("bill").update({"email" : info.email,"sensorname" : info.sensorname,"sensor_location":info.sensorlocation }, {$inc : {"cost": 2 ,"count" : 1}});
     cursor.then(function (user) {
         deferred.resolve(user);
     }).catch(function (error) {
