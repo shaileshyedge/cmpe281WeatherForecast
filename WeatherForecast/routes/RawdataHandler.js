@@ -222,6 +222,32 @@ exports.getAllSensors = function()
 };
 
 
+
+
+exports.getSensorUsage = function()
+{
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("bill").aggregate({$group : {_id : "$sensorname", total :{$sum : 1 }}});
+
+    var usage = [];
+    cursor.each(function (error, doc) {
+        if (error) {
+            deferred.reject(error);
+        }
+        if (doc != null) {
+            usage.push(doc);
+        }
+        else
+        {
+            deferred.resolve(usage);
+        }
+    });
+    return deferred.promise;
+};
+
+
+
+
 exports.showAllBills = function()
 {
     var deferred = Q.defer();

@@ -442,6 +442,26 @@ function getDropDownOptions(req,res){
 
 
 
+function getSensorUsage(req,res){
+
+	var promise = rawDataHandler.getSensorUsage();
+
+	promise.done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"response" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
+
+
 function showAllBills(req,res){
 	var info ={
 		"email" : req.session.useremail
