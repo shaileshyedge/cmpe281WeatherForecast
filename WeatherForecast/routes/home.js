@@ -44,32 +44,7 @@ function logout(req,res) {
 function requestData(req,res) {
 	res.render("requestSensorData");
 }
-function getBillList(req,res) {
-	  console.log("inside getBill List of home.js");
-	  var json_responses={};
-		mongo.connect(mongoURL, function() {
-			console.log('connected to mongo at: ' + mongoURL);
-			var coll = mongo.collection('sensorUsage');
-			coll.find({"current":{$eq :1},"email":req.session.email}).toArray(function(err, user) {
-				if (user) {
-					console.log("The data retrieved is: "+ JSON.stringify(user));
-					console.log("Success retrieving the data!!");
-					json_responses.statusCode  = 200;
-					//json_responses = {statusCode : 200};	
-					console.log("session variable of counter is : "+req.session.counter);
-					json_responses.billDetails= user;
-					console.log("response from home.js getBillList: " +JSON.stringify(user));
-					//json_responses = {billDetails : user};
-					res.send(json_responses);
-				} else {
-					console.log("Error while fetching the data");
-					json_responses = {statusCode : "401"};
-					res.send(json_responses);
-					
-				}
-			});
-		});
-}
+
 
 function addUser(req, res){
 	var data = {
@@ -84,7 +59,8 @@ function addUser(req, res){
 		country : req.param("country"),
 		city : req.param("city"),
 		gender : req.param("gender"),
-		isAdmin : '0'
+		isAdmin : '0',
+		credits : 100
 	};
 
 	var promise = rawDataHandler.registerUsers(data);
@@ -100,48 +76,6 @@ function addUser(req, res){
 	});
 }
 
-/*
-function userLogin(req,res){
-	var json_responses={};
-	console.log("In home login");
-	console.log("email: "+req.param("email"));
-	console.log("pwd: "+req.param("password"));
-	var login = req.param("login");
-	mongo.connect(mongoURL, function(){
-		console.log('Connected to mongo at: ' + mongoURL);
-		var coll = mongo.collection('userDetails');
-		console.log("Fetching data from db");
-		coll.findOne({email: req.param("email"),password: req.param("password")}, function(err, user){
-			if(user) {
-				var currentdate = new Date();
-				console.log("currentHour is : "+currentdate.getHours());
-				if(login == "userLogin")
-					{
-				req.session.useremail = user.email;
-				req.session.userfirstname = user.firstname;
-				req.session.userlastname = user.lastname;
-					}
-				else if(login == "adminLogin")
-					{
-					req.session.adminemail = user.email;
-					req.session.adminfirstname = user.firstname;
-					req.session.adminlastname = user.lastname;
-					}
-				//console.log("session set to : "+req.session.email);
-				console.log("From login in mongo: "	+ JSON.stringify(user));
-				json_responses.statusCode= 200;
-				json_responses.data= user;
-				console.log("Returning value(home.js): " + JSON.stringify(json_responses));
-				res.send(json_responses);
-			} else {
-				json_responses.statusCode= 404;
-				console.log("Returning errorv(home.js): " + JSON.stringify(json_responses));
-				res.send(json_responses);
-			}
-		});
-	});
-};
-*/
 
 
 function userLogin(req,res)
@@ -165,7 +99,6 @@ function userLogin(req,res)
 
 		if(response == null)
 		{
-			console.log("Here ssss");
 			res.send({
 				"data"      : response,
 				"statuscode": 404
@@ -198,16 +131,16 @@ function userLogin(req,res)
 
 function getData(req,res){
 	var json_responses={};
-	console.log("Inside sensor.js addSensor");	
+	console.log("Inside sensor.js addSensor");
 	var location = req.param("location");
 	console.log("location name is : "+location);
 
-	mongo.connect(mongoURL, function(){	
+	mongo.connect(mongoURL, function(){
 		console.log('Connected to mongo at: ' + mongoURL);
 		var coll = mongo.collection("sensorMetadata");
-	
+
 		console.log("The collection is: "+coll);
-		
+
 		coll.find({activate:{$eq :"active"},deleted:{$eq:0},location:{$eq:location}},{"sensorname":1}).toArray(function(err, user){
 
 			if (user) {
@@ -216,7 +149,7 @@ function getData(req,res){
 				json_responses.statusCode= 200;
 				json_responses.schools= user;
 				res.send(json_responses);
-				
+
 			} else {
 				console.log("returned false");
 				json_responses.statusCode= 401;
@@ -224,7 +157,7 @@ function getData(req,res){
 			}
 		});
 	});
-};	
+};
 
 function resetBill(req,res) {
 	
@@ -250,75 +183,9 @@ function resetBill(req,res) {
 	});
 };
 
-function storeDataFromURl(req,res){
-	var loc = $scope.location ;
-	var sensorName = $scope.sensorName;
-	var url = "http://erddap.cencoos.org/erddap/tabledap/"+loc+".json?time,latitude,longitude,"+sensorName+"&time>=2015-01-13T00:00:00Z&time<=2016-01-13T18:45:00Z"
-	http.get(url, function(res) {
-		  //console.log(res);
-		  var body = '';
-		  res.on('data',function(chunk){
-			  body+=chunk;
-		  });
-		  res.on('end',function(){
-			  var data = JSON.stringify(body);
-			  //console.log(data);
-			  var first = body.substring(0,body.indexOf("\n")+1);
-			  var second = body.substring(body.indexOf("\n")+1);
-			  var third = second.substring(second.indexOf("\n")+1);
-			  body=first+third;
-			  console.log("---------------JSON processing method	--------------------\n");
-			  var Converter = require("csvtojson").Converter;
-			  var converter = new Converter({});
-			  converter.fromString(body, function(err,jsondata){
 
-			//Mongo Goes here
-			console.log("Mongo insert begins");
-			var insertData = function(db, callback) {
-			db.collection('SensorData').insert(jsondata, function(err, doc) {
-				if (doc != null) {
-					console.log(doc);
-					} else {
-						console.log("--------_ERROR--------");
-						}
-					});
-				};
-			MongoClient.connect(url, function (err, db) {
-			if (err) {
-				console.log('Unable to connect to the mongoDB server. Error:', err);
-				} else {
-				//HURRAY!! We are connected. :)
-			console.log('Connection established to', url);
-			// Stores the JSON data collected from API to MongoDB in collection "SensorData"
-			insertData(db,function(){db.close();});
-						}
-			});
-
-		});
-			    
-		  });
-		  
-			MongoClient.connect(url, function (err, db) {
-				if (err) {
-					console.log('Unable to connect to the mongoDB server. Error:', err);
-				} else {
-					//HURRAY!! We are connected. :)
-					console.log('Connection established to', url);
-					getStationName(db,function(){db.close();});
-
-				}
-			});
-
-		  
-		}).on('error', function(e) {
-		  console.log(e);
-	});
-
-	
-}
 
 exports.resetBill = resetBill;
-exports.getBillList = getBillList;
 exports.getData = getData;
 exports.requestData = requestData;
 exports.logout = logout;

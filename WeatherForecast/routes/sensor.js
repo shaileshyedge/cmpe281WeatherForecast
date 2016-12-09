@@ -328,6 +328,43 @@ function subscribeSensor(req,res)
 
 }
 
+
+
+function payBill (req,res)
+{
+	var sensor_name    = req.param("sensorname");
+	var sensorlocation = req.param("location");
+	var email = req.session.useremail;
+
+
+	var bill =
+	{
+		"sensorname" : sensor_name,
+		"sensor_location" : sensorlocation,
+		"email" : email,
+		"amount"  : 10
+	}
+
+	var promise = rawDataHandler.payBill(bill);
+	var promise2 = rawDataHandler.updateCredits(bill);
+
+	Q.all([promise,promise2]).done(function (response) {
+		res.send({
+			"statusCode": 200,
+			"response" : response
+		});
+	}, function (error) {
+		res.send({
+			"statusCode": 500,
+			"error" : error
+		});
+	});
+
+}
+
+
+
+
 function unSubscribeSensor(req,res){
 
 	var info =

@@ -293,6 +293,33 @@ exports.updateBill = function (info) {
 };
 
 
+exports.payBill = function (info) {
+    console.log("in Pay Bill");
+    console.log(info);
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("bill").update({"email" : info.email,"sensorname" : info.sensorname,"sensor_location":info.sensorlocation }, {$inc : {"cost": -5 }});
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};
+
+
+exports.updateCredits = function (info) {
+    console.log("in Pay Bill");
+    console.log(info);
+    var deferred = Q.defer();
+    var cursor = MongoDB.collection("users").update({"email" : info.email}, {$inc : {"credits": -5 }});
+    cursor.then(function (user) {
+        deferred.resolve(user);
+    }).catch(function (error) {
+        deferred.reject(error);
+    });
+    return deferred.promise;
+};
+
 exports.activateSensor = function (info) {
     var deferred = Q.defer();
     var cursor = MongoDB.collection("sensormaster").update({"sensorname" : info.sensor_name, "location" : info.sensor_location}, {$set : {"activate" : "active"}});
