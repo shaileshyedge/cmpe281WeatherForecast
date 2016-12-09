@@ -50,6 +50,7 @@ app.controller("subUnsubCtrl",function($scope,$http){
 			}
 		}).success(function(data){
 			if(data.statusCode == 200){
+				alert("Sensor Successfully Subscribed");
 				$scope.sensor = data.response.ops["0"];
 				$("#activate-success").show();
 				$("#activate-success").fadeTo(2000, 1000).slideUp(1000, function(){
