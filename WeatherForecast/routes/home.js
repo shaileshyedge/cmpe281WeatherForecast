@@ -163,23 +163,31 @@ function userLogin(req,res)
 	promise.done(function (response) {
 		//console.log("The data is" + response.firstname);
 
-		if(response.isAdmin == "0")
+		if(response == null)
 		{
-			req.session.useremail = response.email;
-			req.session.userfirstname = response.firstname;
-			req.session.userlastname = response.lastname;
+			console.log("Here ssss");
+			res.send({
+				"data"      : response,
+				"statuscode": 404
+			})
 		}
-		else if(response.isAdmin == "1")
-		{
-			req.session.adminemail = response.email;
-			req.session.adminfirstname = response.firstname;
-			req.session.adminlastname = response.lastname;
-		}
+		else {
+			if (response.isAdmin == "0") {
+				req.session.useremail = response.email;
+				req.session.userfirstname = response.firstname;
+				req.session.userlastname = response.lastname;
+			}
+			else if (response.isAdmin == "1") {
+				req.session.adminemail = response.email;
+				req.session.adminfirstname = response.firstname;
+				req.session.adminlastname = response.lastname;
+			}
 
-		res.send({
-			"data"      : response,
-			"statuscode": 200
-		});
+			res.send({
+				"data": response,
+				"statuscode": 200
+			});
+		}
 	}, function (error) {
 		res.send({
 			"data" : null,

@@ -64,27 +64,31 @@ var sensorApp= angular.module('sensorApp',[]);
     	}).success(function (res) {
     		console.log("The return value: "+JSON.stringify(res));
     		if(res)
-    		{ 
-    			console.log("successfully loggedin");
-    			var data = res.data;
-    			console.log("Data is :"+JSON.stringify(data));
-    			console.log("flag is: "+ data.isAdmin);
-    			$scope.firstname = data.firstname;
+    		{   if(res.statuscode == 200) {
+				var data = res.data;
+				console.log("Data is :" + JSON.stringify(data));
+				console.log("flag is: " + data.isAdmin);
+				$scope.firstname = data.firstname;
 				$scope.lastname = data.lastname;
-				console.log("first name is: "+$scope.firstname);
-				console.log("last name is: "+$scope.lastname);
-    			if(data.isAdmin == 0){
+				console.log("first name is: " + $scope.firstname);
+				console.log("last name is: " + $scope.lastname);
+				if (data.isAdmin == 0) {
 					window.location.assign("/userDashboard");
 				}
-	           	else{
+				else {
 					window.location.assign("/adminDashboard");
 				}
 
+			}
+				else
+			{
+				alert("Invalid Login Credentials: Please try again");
+			}
 	            //});
     		  		
     		}
     		else
-    		{
+    		{    alert("Auth FAILURE");
     			console.log("Authentication failure after success");
     		}
     		
