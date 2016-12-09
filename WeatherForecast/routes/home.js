@@ -59,16 +59,17 @@ function addUser(req, res){
 		country : req.param("country"),
 		city : req.param("city"),
 		gender : req.param("gender"),
-		isAdmin : '0',
-		credits : 100
+		isAdmin : '0'
 	};
 
 	var promise = rawDataHandler.registerUsers(data);
 	promise.done(function (response) {
+		console.log("Response is" + response);
 		res.send({
 			"statusCode": 200
 		});
 	}, function (error) {
+		console.log("Data eror" + error);
 		res.send({
 			"statusCode": 500,
 			"error" : error

@@ -36,6 +36,7 @@ var sensorApp= angular.module('sensorApp',[]);
 				 "gender" : $scope.gender
 			 }
 		 }).success(function (res){
+
 			 if(res.statusCode == 200)
 			 {
 				 console.log("successfully signed up");
@@ -45,7 +46,12 @@ var sensorApp= angular.module('sensorApp',[]);
 				 });
 
 			 }
+			 else
+			 {
+				 alert("User Already Exists");
+			 }
 		 }).error(function (res){
+			 alert("Error while Sign Up: Please try again Later");
 			 console.log("error while sign up");
 		 });
 	 };

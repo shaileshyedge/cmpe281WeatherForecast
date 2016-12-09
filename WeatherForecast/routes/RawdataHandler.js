@@ -251,19 +251,19 @@ exports.getSensorUsage = function()
 exports.showAllBills = function()
 {
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("bill").find({});
+    var cursor = MongoDB.collection("bill").aggregate({ $group : {_id : "$email", total : {$sum : "$cost" }} });
 
-    var sensorData = [];
+    var bills = [];
     cursor.each(function (error, doc) {
         if (error) {
             deferred.reject(error);
         }
         if (doc != null) {
-            sensorData.push(doc);
+            bills.push(doc);
         }
         else
         {
-            deferred.resolve(sensorData);
+            deferred.resolve(bills);
         }
     });
     return deferred.promise;
@@ -295,8 +295,10 @@ exports.registerUsers = function (info) {
     var deferred = Q.defer();
     var cursor = MongoDB.collection("users").insert(info);
     cursor.then(function (user) {
+        console.log("User is" + user);
         deferred.resolve(user);
     }).catch(function (error) {
+        console.log("Error is" + error);
         deferred.reject(error);
     });
     return deferred.promise;
@@ -567,14 +569,6 @@ exports.getSensorData = function(info)
     });
     return deferred.promise;
 };
-
-
-
-
-
-
-
-
 
 
 

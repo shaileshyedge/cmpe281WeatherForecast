@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sensor.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sensor.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/sensor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77960527">
-              <caret line="457" column="11" selection-start-line="457" selection-start-column="11" selection-end-line="457" selection-end-column="11" />
+            <state vertical-scroll-proportion="-1.6071428">
+              <caret line="628" column="23" selection-start-line="628" selection-start-column="23" selection-end-line="628" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/routes/RawdataHandler.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-4.3157897">
-              <caret line="240" column="9" selection-start-line="240" selection-start-column="9" selection-end-line="240" selection-end-column="9" />
+              <caret line="300" column="40" selection-start-line="300" selection-start-column="40" selection-end-line="300" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -44,28 +44,8 @@
       <file leaf-file-name="adminDashboardCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/adminDashboardCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.9285715">
+            <state vertical-scroll-proportion="-3.5357144">
               <caret line="122" column="45" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="billing.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/billing.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.423077">
-              <caret line="243" column="116" selection-start-line="243" selection-start-column="102" selection-end-line="243" selection-end-column="116" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signup.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/signup.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.1204815">
-              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -74,8 +54,28 @@
       <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8095238">
-              <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.2142856">
+              <caret line="71" column="41" selection-start-line="71" selection-start-column="41" selection-end-line="71" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainCtrl.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/angularjs/mainCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6509695">
+              <caret line="53" column="66" selection-start-line="53" selection-start-column="66" selection-end-line="53" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/angularjs/home.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.9298246">
+              <caret line="67" column="11" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -86,16 +86,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.9047619">
               <caret line="137" column="22" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requestWaterQuality.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/templates/requestWaterQuality.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -117,14 +107,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/views/billing.ejs" />
-        <option value="$PROJECT_DIR$/public/angularjs/mainCtrl.js" />
         <option value="$PROJECT_DIR$/views/signup.ejs" />
         <option value="$PROJECT_DIR$/public/js/dashboardCtrl.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/routes/home.js" />
         <option value="$PROJECT_DIR$/public/js/adminDashboardCtrl.js" />
-        <option value="$PROJECT_DIR$/routes/sensor.js" />
         <option value="$PROJECT_DIR$/routes/RawdataHandler.js" />
+        <option value="$PROJECT_DIR$/routes/sensor.js" />
+        <option value="$PROJECT_DIR$/routes/home.js" />
+        <option value="$PROJECT_DIR$/public/angularjs/mainCtrl.js" />
       </list>
     </option>
   </component>
@@ -229,24 +219,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WeatherForecast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WeatherForecast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -478,14 +450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/angularjs/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323263">
-          <caret line="351" column="46" selection-start-line="351" selection-start-column="45" selection-end-line="351" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.8313253">
@@ -493,50 +457,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/angularjs/mainCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="39" selection-start-line="90" selection-start-column="39" selection-end-line="90" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/templates/requestWaterQuality.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/signup.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.1204815">
-          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.2280703">
           <caret line="87" column="23" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/dashboardCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.9047619">
-          <caret line="137" column="22" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/billing.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077">
-          <caret line="243" column="116" selection-start-line="243" selection-start-column="102" selection-end-line="243" selection-end-column="116" />
           <folding />
         </state>
       </provider>
@@ -549,18 +473,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/adminDashboardCtrl.js">
+    <entry file="file://$PROJECT_DIR$/views/billing.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9285715">
-          <caret line="122" column="45" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.8922652">
+          <caret line="243" column="116" selection-start-line="243" selection-start-column="102" selection-end-line="243" selection-end-column="116" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/home.js">
+    <entry file="file://$PROJECT_DIR$/views/signup.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8095238">
-          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+        <state vertical-scroll-proportion="-3.5704918">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/requestWaterQuality.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.046961326">
+          <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/sensor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6071428">
+          <caret line="628" column="23" selection-start-line="628" selection-start-column="23" selection-end-line="628" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/angularjs/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9298246">
+          <caret line="67" column="11" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/dashboardCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9047619">
+          <caret line="137" column="22" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -568,15 +524,31 @@
     <entry file="file://$PROJECT_DIR$/routes/RawdataHandler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.3157897">
-          <caret line="240" column="9" selection-start-line="240" selection-start-column="9" selection-end-line="240" selection-end-column="9" />
+          <caret line="300" column="40" selection-start-line="300" selection-start-column="40" selection-end-line="300" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/sensor.js">
+    <entry file="file://$PROJECT_DIR$/routes/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77960527">
-          <caret line="457" column="11" selection-start-line="457" selection-start-column="11" selection-end-line="457" selection-end-column="11" />
+        <state vertical-scroll-proportion="-2.2142856">
+          <caret line="71" column="41" selection-start-line="71" selection-start-column="41" selection-end-line="71" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/adminDashboardCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5357144">
+          <caret line="122" column="45" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/angularjs/mainCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6509695">
+          <caret line="53" column="66" selection-start-line="53" selection-start-column="66" selection-end-line="53" selection-end-column="66" />
           <folding />
         </state>
       </provider>
