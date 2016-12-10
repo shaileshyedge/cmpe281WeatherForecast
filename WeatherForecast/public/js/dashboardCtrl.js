@@ -20,6 +20,7 @@ app.controller("subUnsubCtrl",function($scope,$http){
 			url : '/getSensorDetails',
 			data: {}
 		}).success(function(data) {
+			alert("Sensor Data Retrieved");
 			if(data){
 				$scope.sensorsList = data.response;
 				console.log("Success in retrieving the sensor metadata");
@@ -33,12 +34,14 @@ app.controller("subUnsubCtrl",function($scope,$http){
 	$scope.subscribeSensor = function(sensor){
 		console.log("sensor to be subscribed is: "+ sensor.sensorname);
 		console.log("sensor is located in: "+ sensor.location);
+
 		$http({
 			method : 'POST',
 			url : '/subscribeSensor',
 			data : {
 				"sensorname" : sensor.sensorname,
-				"location" : sensor.location
+				"location" : sensor.location,
+				"subscriptionCost" : sensor.subscriptionCost
 			}
 		}).success(function(data){
 			if(data.statusCode == 200){
@@ -49,8 +52,8 @@ app.controller("subUnsubCtrl",function($scope,$http){
 				});
 			}
 			else
-			{
-				alert("Already Subscribed For this Sensor");
+			{   //alert(data.statusCode);
+				//alert("Already Subscribed For this Sensor");
 			}
 		}).error(function(error){
 			console.log("error is: "+error);

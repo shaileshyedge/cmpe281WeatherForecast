@@ -168,6 +168,7 @@ function subscribeSensor(req,res)
 {
 	var sensor_name    = req.param("sensorname");
 	var sensorlocation = req.param("location");
+	var subscriptionCost = req.param("subscriptionCost");
 	var date = new Date();
 
 	var info =
@@ -176,7 +177,8 @@ function subscribeSensor(req,res)
 		"sensor_location" : sensorlocation,
 		"email" : req.session.useremail,
 		"date" : date,
-		"activate" : "active"
+		"activate" : "active",
+		"cost"  : Number(subscriptionCost)
 	};
 
 	var bill =
@@ -185,8 +187,9 @@ function subscribeSensor(req,res)
 		"sensor_location" : sensorlocation,
 		"email" : req.session.useremail,
 		"count" : 1,
-		"cost"  : 10
-	}
+		"cost"  : Number(subscriptionCost)
+	};
+
 	var promise = rawDataHandler.subscribeSensor(info);
 	var promise2 = rawDataHandler.insertBill(bill);
 

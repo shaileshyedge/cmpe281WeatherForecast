@@ -23,6 +23,7 @@ exports.adddata = function (info) {
 exports.insertBill = function (info) {
     var deferred = Q.defer();
     var cursor = MongoDB.collection("bill").insert(info);
+  //  var cursor = MongoDB.collection("bill").upda
     cursor.then(function (user) {
         deferred.resolve(user);
     }).catch(function (error) {
@@ -240,7 +241,7 @@ exports.updateBill = function (info) {
     console.log("in update Bill");
     console.log(info);
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("bill").update({"email" : info.email,"sensorname" : info.sensorname,"sensor_location":info.sensorlocation }, {$inc : {"cost": 2 ,"count" : 1}});
+    var cursor = MongoDB.collection("bill").update({"email" : info.email,"sensorname" : info.sensorname,"sensor_location":info.sensorlocation }, {$inc : {"count" : 1,"cost" : 2}});
     cursor.then(function (user) {
         deferred.resolve(user);
     }).catch(function (error) {
@@ -299,7 +300,7 @@ exports.subscribeSensor = function (info) {
     var deferred = Q.defer();
     console.log(info.sensor_location);
     console.log(info.sensor_name);
-    var cursor = MongoDB.collection("subscription").insert({"sensorname" : info.sensor_name, "location" : info.sensor_location,"email" : info.email,"date" : info.date, "activate" : info.activate, "cost" : "10"});
+    var cursor = MongoDB.collection("subscription").insert({"sensorname" : info.sensor_name, "location" : info.sensor_location,"email" : info.email,"date" : info.date, "activate" : info.activate, "cost" : info.cost});
     cursor.then(function (doc) {
         deferred.resolve(doc);
     }).catch(function (error) {
@@ -311,6 +312,7 @@ exports.subscribeSensor = function (info) {
 
 exports.unSubscribeSensor = function (info) {
     var deferred = Q.defer();
+    console.log("hERE IS " + info.email + info.sensor_name);
     var cursor = MongoDB.collection("subscription").remove({"email" : info.email, "sensorname" : info.sensor_name});
     cursor.then(function (doc) {
         deferred.resolve(doc);
