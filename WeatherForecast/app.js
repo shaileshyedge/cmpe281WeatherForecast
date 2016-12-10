@@ -60,7 +60,7 @@ app.get('/userDashboard',home.userDashboard);
 app.get('/billing',home.billing);
 app.get('/map',home.map);
 app.get('/getDropDownOptions',sensor.getDropDownOptions);
-
+app.get('/getsensorusage',sensor.getSensorUsage);
 app.post('/payBill', home.payBill);
 
 app.post('/addNewSensor',sensor.addNewSensor);

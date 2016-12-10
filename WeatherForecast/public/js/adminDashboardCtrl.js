@@ -22,6 +22,9 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/userBilling', {
 		controller : 'userBillingCtrl',
 		templateUrl : 'templates/UserBilling.ejs'
+	}).when('/sensorusage', {
+		controller : 'sensorUsageCtrl',
+		templateUrl : 'templates/SensorUsageStatistics.ejs'
 	})
 } ]);
 
@@ -402,7 +405,6 @@ app.controller("userBillingCtrl", function($scope, $http, $routeParams) {
 			//alert(data);
 
 			if(data.response){
-				// TODO iterate over data.response;
 				var x = data.response;
 				var i = 0;
 				for (var key in x) {
@@ -411,12 +413,9 @@ app.controller("userBillingCtrl", function($scope, $http, $routeParams) {
 						"email" : key,
 						"value" : x[key]
 					};
-					//alert("User " + x[key] + " is #" + key); // "User john is #234"
 					pair[i]=json;
 					i++;
 				}
-				//var x = JSON.stringify(data.response);
-				//console.log(data["shailesh@gmail.com"]);
 				$scope.userBillinglist = pair;
 			}
 		}).error(function (data){
@@ -425,3 +424,101 @@ app.controller("userBillingCtrl", function($scope, $http, $routeParams) {
 	};
 });
 
+
+app.controller("sensorUsageCtrl",function($scope, $http){
+	var pair = [];
+	$scope.getSensorUsage = function(){
+		alert("Hi");
+		$http({
+			method : "GET",
+			url : "/getsensorusage"
+		}).success(function(data) {
+			if(data) {
+
+				if(data.response){
+					var x = data.response;
+					var i = 0;
+					for (var key in x) {
+						var json =
+						{
+							"email" : key,
+							"value" : x[key]
+						};
+						pair[i]=json;
+						i++;
+					}
+					//$scope.userBillinglist = pair;
+				}
+
+
+				$scope.tuitionjson = pair;
+
+				$scope.highchartsNG = {
+					options : {
+						chart : {
+							type : 'bar',
+							events : {
+								redraw : function() {
+								}
+
+							}
+						}
+					},
+					series : [ {
+						color : $scope.barcolor,
+						data : []
+					} ],
+					title : {
+						text : "Sensor Usage"
+					},
+
+					plotOptions: {
+						spline: {
+							turboThreshold: 998,
+							lineWidth: 2,
+							states: {
+								hover: {
+									enabled: true,
+									lineWidth: 3
+								}
+							}
+						}
+					},
+
+					xAxis : {
+						title : {
+							text : 'SENSOR'
+						},
+						categories : ["Temperature","Pressure","Humidity","Sea Level","Wind Speed"]
+					},
+					yAxis : {
+						title : {
+							text : 'NUMBER OF API HITS'
+						}
+					},
+					loading : false
+				}
+				var data2 = [];
+				console.log("Loc1");
+				angular.forEach($scope.tuitionjson, function(item) {
+					console.log("BEFORE ITEM LIST");
+					console.log("Items list " + JSON.stringify(item));
+					data2.push([item.email, item.value]);
+
+				});
+				$scope.highchartsNG.series[0].data = data2;
+				console.log("Loc2");
+				$scope.xSeriesArray = [];
+				angular.forEach($scope.tuitionjson, function(item) {
+					console.log("Item: " + JSON.stringify(item));
+					$scope.xSeriesArray.push(item[sensorType])
+				})
+				$scope.barcolor = '#166D9C';
+			}
+		}).error(function(error) {
+			console.log("error :(");
+		});
+	}
+
+
+});

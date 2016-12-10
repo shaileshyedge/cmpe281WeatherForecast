@@ -553,3 +553,4 @@ exports.getSensorData = getSensorData;
 exports.getLatLong = getLatLong;
 exports.getSensorHealth = getSensorHealth;
 exports.showAllBills = showAllBills;
+exports.getSensorUsage = getSensorUsage;

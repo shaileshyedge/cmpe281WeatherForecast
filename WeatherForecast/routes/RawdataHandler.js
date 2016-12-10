@@ -132,22 +132,30 @@ exports.getAllSensors = function()
 
 
 
+
+
+
+
 exports.getSensorUsage = function()
 {
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("bill").aggregate({$group : {_id : "$sensorname", total :{$sum : 1 }}});
-
-    var usage = [];
+    var cursor = MongoDB.collection("bill").aggregate({$group : {_id : "$sensorname", total :{$sum : "$count" }}});
+    var bills_new = {};
     cursor.each(function (error, doc) {
         if (error) {
             deferred.reject(error);
         }
         if (doc != null) {
-            usage.push(doc);
+
+            if(bills_new[doc.sensorname]) {
+                bills_new[doc.sensorname] = bills_new[doc.sensorname] + doc.count;
+            } else {
+                bills_new[doc.sensorname] = doc.count;
+            }
         }
         else
         {
-            deferred.resolve(usage);
+            deferred.resolve(bills_new);
         }
     });
     return deferred.promise;
@@ -155,15 +163,11 @@ exports.getSensorUsage = function()
 
 
 
-
 exports.showAllBills = function()
 {
     var deferred = Q.defer();
     var cursor = MongoDB.collection("bill").aggregate({ "$group" : {"_id" : "$email", "total" : {"$sum" : "$cost" }} });
-    //db.bill.aggregate({$group : {_id : "$email", total :{$sum : "$cost" }}});
-    //var cursor = MongoDB.collection("bill").aggregate({$group : {_id : "$sensorname", total :{$sum : $count }}});
     var bills_new = {};
-    var bills = [];
     cursor.each(function (error, doc) {
         if (error) {
             deferred.reject(error);
@@ -175,7 +179,6 @@ exports.showAllBills = function()
             } else {
                 bills_new[doc.email] = doc.cost;
             }
-            bills.push(doc);
         }
         else
         {
