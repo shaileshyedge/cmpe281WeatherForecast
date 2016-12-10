@@ -19,6 +19,9 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/sensorHealth', {
 		controller : 'sensorHealthCtrl',
 		templateUrl : 'templates/sensorHealth.ejs'
+	}).when('/userBilling', {
+		controller : 'userBillingCtrl',
+		templateUrl : 'templates/UserBilling.ejs'
 	})
 } ]);
 
@@ -385,4 +388,40 @@ app.controller("userlistCtrl", function($scope, $http, $routeParams) {
 		};
 });
 
+
+app.controller("userBillingCtrl", function($scope, $http, $routeParams) {
+
+
+	var pair = [];
+	$scope.userBillinglist = {};
+	$scope.getUserBillinglist = function() {
+		$http({
+			method : 'GET',
+			url : '/getUserBillingList'
+		}).success(function(data) {
+			//alert(data);
+
+			if(data.response){
+				// TODO iterate over data.response;
+				var x = data.response;
+				var i = 0;
+				for (var key in x) {
+					var json =
+					{
+						"email" : key,
+						"value" : x[key]
+					};
+					//alert("User " + x[key] + " is #" + key); // "User john is #234"
+					pair[i]=json;
+					i++;
+				}
+				//var x = JSON.stringify(data.response);
+				//console.log(data["shailesh@gmail.com"]);
+				$scope.userBillinglist = pair;
+			}
+		}).error(function (data){
+			console.log("error while adding a sensor");
+		});
+	};
+});
 

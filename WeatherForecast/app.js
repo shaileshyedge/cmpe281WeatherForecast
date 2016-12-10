@@ -52,7 +52,7 @@ app.get('/login', home.login);
 app.get('/home', home.index);
 app.get('/adminDashboard',home.adminDashboard);
 app.get('/logout', home.logout);
-
+app.get('/getUserBillingList',sensor.showAllBills);
 app.post('/getSensorData', sensor.getSensorData);
 app.post('/addUser',home.addUser);
 app.post('/userLogin',home.userLogin);

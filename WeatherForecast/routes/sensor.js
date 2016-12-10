@@ -336,6 +336,7 @@ function getSensorUsage(req,res){
 
 
 function showAllBills(req,res){
+	console.log("Reached Here");
 	var info ={
 		"email" : req.session.useremail
 	};
@@ -551,3 +552,4 @@ exports.showMyBill = showMyBill;
 exports.getSensorData = getSensorData;
 exports.getLatLong = getLatLong;
 exports.getSensorHealth = getSensorHealth;
+exports.showAllBills = showAllBills;

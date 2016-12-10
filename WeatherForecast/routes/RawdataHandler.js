@@ -159,19 +159,27 @@ exports.getSensorUsage = function()
 exports.showAllBills = function()
 {
     var deferred = Q.defer();
-    var cursor = MongoDB.collection("bill").aggregate({ $group : {_id : "$email", total : {$sum : "$cost" }} });
-
+    var cursor = MongoDB.collection("bill").aggregate({ "$group" : {"_id" : "$email", "total" : {"$sum" : "$cost" }} });
+    //db.bill.aggregate({$group : {_id : "$email", total :{$sum : "$cost" }}});
+    //var cursor = MongoDB.collection("bill").aggregate({$group : {_id : "$sensorname", total :{$sum : $count }}});
+    var bills_new = {};
     var bills = [];
     cursor.each(function (error, doc) {
         if (error) {
             deferred.reject(error);
         }
         if (doc != null) {
+            console.log("The doc here is " + doc.total);
+            if(bills_new[doc.email]) {
+                bills_new[doc.email] = bills_new[doc.email] + doc.cost;
+            } else {
+                bills_new[doc.email] = doc.cost;
+            }
             bills.push(doc);
         }
         else
         {
-            deferred.resolve(bills);
+            deferred.resolve(bills_new);
         }
     });
     return deferred.promise;
